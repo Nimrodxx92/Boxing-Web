@@ -460,11 +460,14 @@ button {
 }
 
 .title__section {
+  background-color: rgb(15, 15, 15);
+  padding: 2.8vw;
   text-align: center;
 }
 .title__section h1 {
   color: #da1d25;
   font-size: 4.5vw;
+  margin-top: -4vw;
   font-family: "Teko", sans-serif;
   font-weight: 500;
   text-transform: uppercase;
@@ -477,6 +480,9 @@ button {
 }
 .title__section .subtitle__section {
   display: inline-block;
+  font-family: "Teko", sans-serif;
+  font-size: 1.5vw;
+  font-weight: 500;
 }
 
 .footer {
@@ -621,10 +627,11 @@ button {
 .cards__items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  padding: 7vw;
-  gap: 3vw;
+  padding: 6vw;
+  gap: 2vw;
   justify-content: space-around;
   text-align: center;
+  background-color: black;
 }
 .cards__items .cards {
   display: flex;
@@ -645,13 +652,15 @@ button {
   font-size: 2vw;
   color: #da1d25;
 }
+.cards__items .cards .price {
+  font-family: "Teko", sans-serif;
+  font-size: 4.5vw;
+  color: white;
+}
 .cards__items .cards .entrenamiento {
   color: #959595;
-  line-height: 0vw;
-  font-size: 1.3vw;
-}
-.cards__items .cards .price {
-  font-size: 2.6vw;
+  line-height: 3.5vw;
+  font-size: 1.4vw;
 }
 .cards__items .cards button {
   background-color: #da1d25;
@@ -663,6 +672,7 @@ button {
   font-weight: 600;
   border: none;
   cursor: pointer;
+  margin-top: 2vw;
 }
 .cards__items .cards button:hover {
   transform: translateY(-8px);
@@ -764,7 +774,7 @@ button {
   justify-content: center;
   gap: 0.7vw;
   background-color: #da1d25;
-  padding: 1vw;
+  padding: 1vw 3vw;
 }
 .breadcrumb ol .link-home a {
   color: white;
@@ -773,22 +783,20 @@ button {
   color: black;
 }
 
-.price__container .price__titles {
-  background-color: #111111;
-  padding: 3vw;
+.price__description {
+  padding: 2vw 10vw;
+  background-color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8vw;
+  margin-top: -3vw;
 }
-.price__container .price__titles .breadcrumb__container {
-  width: 15%;
-  margin: 0 auto;
-}
-.price__container .price__titles .breadcrumb__container .price__description {
-  padding: 2vw 15vw;
-  background-color: rgb(8, 8, 8);
-}
-.price__container .price__titles .breadcrumb__container .price__description p {
+.price__description p {
   font-size: 1.2vw;
   color: #959595;
+  line-height: 1.5vw;
 }
-.price__container .price__titles .breadcrumb__container .price__description p span {
+.price__description p span {
   color: #da1d25;
 }/*# sourceMappingURL=main.css.map */
