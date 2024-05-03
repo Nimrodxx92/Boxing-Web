@@ -1,21 +1,17 @@
-.price__container {
-  .price__titles {
-    background-color: #111111;
-    padding: 3vw;
-    .breadcrumb__container {
-      width: 15%;
-      margin: 0 auto;
-      .price__description {
-        padding: 2vw 15vw;
-        background-color: rgb(8, 8, 8);
-        p {
-          font-size: 1.2vw;
-          color: #959595;
-          span {
-            color: $colorMain;
-          }
-        }
-      }
+.price__description {
+  padding: 2vw 10vw;
+  background-color: black;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8vw;
+  margin-top: -3vw;
+  p {
+    font-size: 1.2vw;
+    color: #959595;
+    line-height: 1.5vw;
+    span {
+      color: $colorMain;
     }
   }
 }

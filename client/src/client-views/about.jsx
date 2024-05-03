@@ -14,19 +14,6 @@ const About = () => {
         <div className="subtitle__section">
           <Breadcrumb />
         </div>
-        <div className="pl">
-          <svg
-            className="lineaaa"
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 1440 50"
-          >
-            <path
-              fill="#000000"
-              fillOpacity="1"
-              d="M 0 0 L 1920 60 V 70 H 0 V 0 Z"
-            ></path>
-          </svg>
-        </div>
       </section>
       <section className="about__container">
         <div className="firts__about">

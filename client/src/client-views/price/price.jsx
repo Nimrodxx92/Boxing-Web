@@ -33,27 +33,29 @@ const Price = () => {
   ];
 
   return (
-    <section className="price__container">
-      <div className="price__titles">
+    <>
+      <section className="title__section">
         <TitleComponent
           title={data.price.title}
           description={data.price.description}
         />
-        <div className="breadcrumb__container">
+        <div className="subtitle__section">
           <Breadcrumb />
         </div>
-      </div>
-      <div className="card__container">
-        <Cards />
-      </div>
-      <div className="price__description">
-        {descriptionPrice.map((descripcion, index) => (
-          <p key={index}>
-            <span>&#10003;</span> {descripcion.descripcion}
-          </p>
-        ))}
-      </div>
-    </section>
+      </section>
+      <section>
+        <div className="card__container">
+          <Cards />
+        </div>
+        <div className="price__description">
+          {descriptionPrice.map((descripcion, index) => (
+            <p key={index}>
+              <span>&#10003;</span> {descripcion.descripcion}
+            </p>
+          ))}
+        </div>
+      </section>
+    </>
   );
 };
 
