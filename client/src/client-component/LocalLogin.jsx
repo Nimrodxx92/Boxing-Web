@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { loginLocal } from "../redux/userLocalActions";
+import LoginButton from "../loginComponent/loginButton/loginButton";
+import { Link } from "react-router-dom";
 
 const LocalLogin = () => {
   const [userData, setUserData] = useState({
@@ -41,6 +43,15 @@ const LocalLogin = () => {
         <button type="button" onClick={handleLogin}>
           Log In
         </button>
+        <button>
+          <LoginButton />
+        </button>
+
+        <Link to="/LocalLogin" className="login">
+          Login
+        </Link>
+
+        <Link to="/RegistroLocal">REGISTRO LOCAL</Link>
       </form>
     </div>
   );

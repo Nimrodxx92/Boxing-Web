@@ -3,7 +3,6 @@ import { useState } from "react";
 import Logo from "../assets/box-logo.png";
 import MobileNav from "./MobileNav";
 import { useAuth0 } from "@auth0/auth0-react";
-import LoginButton from "../loginComponent/loginButton/loginButton";
 import LogoutButton from "../loginComponent/logOutButton/logOutButton";
 
 function NavBar() {
@@ -54,7 +53,9 @@ function NavBar() {
           )}
           {!isAuthenticated && (
             <div className="boton-register">
-              <LoginButton />
+              <Link to="/LocalLogin" className="login">
+                INICIAR SESIÓN
+              </Link>
             </div>
           )}
         </div>

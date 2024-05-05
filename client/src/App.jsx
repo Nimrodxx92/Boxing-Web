@@ -24,7 +24,7 @@ function App() {
           <Route path="/Contacto" element={<Contact />} />
           <Route path="/Detalle/:id" element={<DetailPayments />} />
           <Route path="/RegistroLocal" element={<RegisterLocal />} />
-          <Route path="/LoginLocal" element={<LocalLogin />} />
+          <Route path="/LocalLogin" element={<LocalLogin />} />
         </Routes>
         <Footer />
       </BrowserRouter>
