@@ -3,7 +3,6 @@ import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getPayments } from "../../redux/paymentsActions";
 import Cards from "../../client-component/cards/Cards";
-import Breadcrumb from "../../utils/Breadcrumb";
 import TitleComponent from "../../components/TitleComponent";
 import data from "../../json/titles.json";
 
@@ -34,14 +33,11 @@ const Price = () => {
 
   return (
     <>
-      <section className="title__section">
+      <section className="">
         <TitleComponent
           title={data.price.title}
           description={data.price.description}
         />
-        <div className="subtitle__section">
-          <Breadcrumb />
-        </div>
       </section>
       <section>
         <div className="card__container">
