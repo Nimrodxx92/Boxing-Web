@@ -41,17 +41,12 @@ const LocalLogin = () => {
           }
         />
         <button type="button" onClick={handleLogin}>
-          Log In
+          Iniciar Sesión
         </button>
-        <button>
-          <LoginButton />
-        </button>
-
-        <Link to="/LocalLogin" className="login">
-          Login
-        </Link>
-
         <Link to="/RegistroLocal">REGISTRO LOCAL</Link>
+        <Link>
+          <LoginButton />
+        </Link>
       </form>
     </div>
   );
