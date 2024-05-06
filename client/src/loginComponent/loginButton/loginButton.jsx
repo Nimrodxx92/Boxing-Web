@@ -6,7 +6,7 @@ const LoginButton = () => {
   return (
     <div className="login-container">
       <button onClick={() => loginWithRedirect()} className="login">
-        Login
+        Registarse con Google
       </button>
     </div>
   );

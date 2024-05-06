@@ -2,11 +2,20 @@ import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/box-logo.png";
 import MobileNav from "./MobileNav";
-import { useAuth0 } from "@auth0/auth0-react";
-import LogoutButton from "../loginComponent/logOutButton/logOutButton";
+import { useAuth0 } from "@auth0/auth0-react"; // Importa el hook de Auth0
+import { useSelector, useDispatch } from "react-redux";
+import { logoutUser } from "../redux/userLocalSlice";
 
 function NavBar() {
-  const { isAuthenticated } = useAuth0();
+  const { isAuthenticated: isAuthenticatedAuth0, logout: logoutAuth0 } =
+    useAuth0();
+
+  const isAuthenticatedRedux = useSelector(
+    (state) => state.user.isAuthenticated
+  );
+  const dispatch = useDispatch();
+
+  const isAuthenticated = isAuthenticatedAuth0 || isAuthenticatedRedux;
 
   const NavLinks = [
     { to: "/", label: "Inicio" },
@@ -20,6 +29,15 @@ function NavBar() {
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
+  };
+
+  const handleLogout = () => {
+    if (isAuthenticatedAuth0) {
+      logoutAuth0();
+    }
+    if (isAuthenticatedRedux) {
+      dispatch(logoutUser());
+    }
   };
 
   return (
@@ -46,18 +64,17 @@ function NavBar() {
               {openMenu ? <span style={{ marginTop: "7px" }}>X</span> : "☰"}
             </span>
           </button>
-          {isAuthenticated && (
-            <div className="boton-register">
-              <LogoutButton />
-            </div>
-          )}
-          {!isAuthenticated && (
-            <div className="boton-register">
+          <div className="boton-register">
+            {isAuthenticated ? (
+              <button onClick={handleLogout} className="login">
+                CERRAR SESIÓN
+              </button>
+            ) : (
               <Link to="/LocalLogin" className="login">
                 INICIAR SESIÓN
               </Link>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </nav>
     </>

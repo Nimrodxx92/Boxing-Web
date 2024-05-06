@@ -4,8 +4,8 @@ import userReducer from "./userLocalSlice";
 
 const store = configureStore({
   reducer: {
-    paymentsReducer,
-    userReducer,
+    payments: paymentsReducer,
+    user: userReducer,
   },
 });
 
