@@ -8,7 +8,7 @@ import data from "../../json/titles.json";
 
 const Price = () => {
   const dispatch = useDispatch();
-  const allPayments = useSelector((state) => state.paymentsReducer.allPayments);
+  const allPayments = useSelector((state) => state.payments.allPayments);
 
   useEffect(() => {
     if (!allPayments.length) {

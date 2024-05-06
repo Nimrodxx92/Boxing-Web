@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const ApiCard = () => {
-  const allPayments = useSelector((state) => state.paymentsReducer.allPayments);
+  const allPayments = useSelector((state) => state.payments.allPayments);
   console.log("Pagos => ", allPayments);
 
   // Crear un nuevo array con el orden modificado
