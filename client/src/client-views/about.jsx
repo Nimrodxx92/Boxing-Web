@@ -1,19 +1,15 @@
 import aboutImg from "../assets/0000.jpg";
-import Breadcrumb from "../utils/Breadcrumb";
 import TitleComponent from "../components/TitleComponent";
 import data from "../json/titles.json";
 
 const About = () => {
   return (
     <>
-      <section className="title__section">
+      <section className="">
         <TitleComponent
           title={data.about.title}
           description={data.about.description}
         />
-        <div className="subtitle__section">
-          <Breadcrumb />
-        </div>
       </section>
       <section className="about__container">
         <div className="firts__about">
