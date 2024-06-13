@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/userLocalActions";
 
-const LocalLogin = () => {
+const RegisterLocal = () => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
@@ -73,4 +73,4 @@ const LocalLogin = () => {
   );
 };
 
-export default LocalLogin;
+export default RegisterLocal;

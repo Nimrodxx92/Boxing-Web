@@ -1,20 +1,23 @@
-import axios from "axios";
+import api from "../api";
 import {
   registerUserFailure,
   registerUserSuccess,
-  loginlocal,
+  loginLocalSuccess,
   loginLocalFailure,
 } from "./userLocalSlice";
+import { setToken } from "./userLocalSlice";
 
 export const registerUser = (name, email, password) => async (dispatch) => {
   try {
-    const response = await axios.post("/register", {
+    const response = await api.post("/register", {
       name,
       email,
       password,
     });
-    console.log(response);
-    dispatch(registerUserSuccess(response.data));
+
+    dispatch(registerUserSuccess(response.data.data.user));
+    dispatch(setToken(response.data.data.token));
+    localStorage.setItem("token", response.data.data.token);
   } catch (error) {
     dispatch(registerUserFailure(error.message));
   }
@@ -22,12 +25,13 @@ export const registerUser = (name, email, password) => async (dispatch) => {
 
 export const loginLocal = (email, password) => async (dispatch) => {
   try {
-    const response = await axios.post("/login", {
+    const response = await api.post("/login", {
       email,
       password,
     });
-    dispatch(loginlocal(response.data));
-    console.log(response.data);
+    dispatch(loginLocalSuccess(response.data.data.user));
+    dispatch(setToken(response.data.data.token));
+    localStorage.setItem("token", response.data.data.token);
   } catch (error) {
     dispatch(loginLocalFailure(error.message));
   }

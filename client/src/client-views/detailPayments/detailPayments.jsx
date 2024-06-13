@@ -10,9 +10,7 @@ const DetailPayments = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
   const { isAuthenticated, loginWithRedirect, user } = useAuth0();
-  const paymentsDetail = useSelector(
-    (state) => state.paymentsReducer.paymentsDetail
-  );
+  const paymentsDetail = useSelector((state) => state.payments.paymentsDetail);
 
   const pay = async (paymentId, unitPrice) => {
     try {
@@ -20,16 +18,26 @@ const DetailPayments = () => {
         loginWithRedirect();
         return;
       }
-      const response = axios.post(
-        `/mercadoPago/create-preference:${user?.email}`,
+      const response = await axios.post(
+        `/mercadoPago/create-preference:${user.email}`,
         {
           paymentId,
           price: unitPrice,
         }
       );
-      console.log("data response =>", response.data);
 
-      window.location.href = response.data.body.init_point;
+      if (
+        response.data &&
+        response.data.body &&
+        response.data.body.init_point
+      ) {
+        window.location.href = response.data.body.init_point;
+      } else {
+        console.error(
+          "La respuesta del servidor no tiene el formato esperado:",
+          response
+        );
+      }
     } catch (error) {
       console.error("Error al procesar el pago:", error);
     }
