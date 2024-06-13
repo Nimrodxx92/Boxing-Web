@@ -3,8 +3,7 @@ import { Link } from "react-router-dom";
 
 const ApiCard = () => {
   const allPayments = useSelector((state) => state.payments.allPayments);
-  console.log("Pagos => ", allPayments);
-
+  console.log(allPayments);
   // Crear un nuevo array con el orden modificado
   const modifiedOrder = [...allPayments];
   if (modifiedOrder.length >= 3) {

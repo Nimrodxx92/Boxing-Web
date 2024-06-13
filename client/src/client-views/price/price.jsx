@@ -1,18 +1,17 @@
 import { useEffect } from "react";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
 import { getPayments } from "../../redux/paymentsActions";
 import Cards from "../../client-component/cards/Cards";
 import TitleComponent from "../../components/TitleComponent";
 import data from "../../json/titles.json";
+import api from "../../api";
 
 const Price = () => {
   const dispatch = useDispatch();
   const allPayments = useSelector((state) => state.payments.allPayments);
-
   useEffect(() => {
     if (!allPayments.length) {
-      axios.get("/api").then(() => dispatch(getPayments()));
+      api.get("/api").then(() => dispatch(getPayments()));
     }
   }, [dispatch, allPayments]);
 

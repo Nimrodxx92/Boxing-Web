@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setToken } from "./redux/userLocalSlice";
 import "./client-component/NavBar";
 import NavBar from "./client-component/NavBar";
 import Home from "./client-views/home";
@@ -12,6 +15,16 @@ import RegisterLocal from "./client-component/RegisterLocal";
 import LocalLogin from "./client-component/LocalLogin";
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    console.log("log de token => ", token);
+    if (token) {
+      dispatch(setToken(token));
+    }
+  }, [dispatch]);
+
   return (
     <>
       <BrowserRouter>

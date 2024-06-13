@@ -4,8 +4,6 @@ const initialState = {
   allPayments: [],
   paymentsDetail: [],
 };
-console.log("Estado inicial => ", initialState.allPayments);
-console.log("paymemtsDetail => ", initialState.paymentsDetail);
 const paymentsSlice = createSlice({
   name: "payments",
   initialState,

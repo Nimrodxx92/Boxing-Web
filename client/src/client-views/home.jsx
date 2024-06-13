@@ -2,7 +2,7 @@ import img1 from "../assets/box.jpg";
 import img2 from "../assets/box-dos.jpg";
 import img3 from "../assets/box-tres.jpg";
 import benefits from "../json/benefits.json";
-import axios from "axios";
+import api from "../api";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -18,14 +18,13 @@ const images = [
 
 const Home = () => {
   const { user, isAuthenticated } = useAuth0();
-
   useEffect(() => {
     if (isAuthenticated) {
       const body = {
         name: user?.name,
         email: user?.email,
       };
-      axios
+      api
         .post("/auth0", body)
         .then((response) => {
           console.log("Post request successful", response.data);
