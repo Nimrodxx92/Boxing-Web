@@ -6,6 +6,8 @@ import api from "../api";
 import { Link } from "react-router-dom";
 import { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useDispatch, useSelector } from "react-redux";
+import { setUserOrderCase, getItems } from "../redux/shopingCartSlice";
 
 const images = [
   {
@@ -17,23 +19,29 @@ const images = [
 ];
 
 const Home = () => {
-  const { user, isAuthenticated } = useAuth0();
+  // const dispatch = useDispatch();
+  // const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
+  const isLocalAuthenticated = useSelector(
+    (state) => state.user.isAuthenticated
+  );
+  const emailLocalUser = useSelector(
+    (state) => state.user && state.user.user && state.user.user.email
+  );
+  console.log(emailLocalUser);
+
   useEffect(() => {
-    if (isAuthenticated) {
-      const body = {
-        name: user?.name,
-        email: user?.email,
-      };
+    if (isLocalAuthenticated && !allItems.length && emailLocalUser) {
       api
-        .post("/auth0", body)
+        .post("/order", { email: emailLocalUser })
         .then((response) => {
-          console.log("Post request successful", response.data);
+          console.log(response.data);
         })
         .catch((error) => {
-          console.error("Error in post request", error);
+          console.log(error);
         });
     }
-  }, [isAuthenticated, user]);
+  }, [isLocalAuthenticated, allItems, emailLocalUser]);
 
   return (
     <>

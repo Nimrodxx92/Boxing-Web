@@ -5,9 +5,16 @@ const checkRol = require("../middleware/rol");
 const {
   postOrderHandler,
   putOrderHandler,
+  getUserOrdersHandler,
 } = require("../handlers/orderHandlers");
 
-orderRouter.post("/", authMiddleware, checkRol(["Admin"]), postOrderHandler);
+orderRouter.post(
+  "/",
+  authMiddleware,
+  checkRol(["Admin", "Client"]),
+  postOrderHandler
+);
 orderRouter.put("/", authMiddleware, checkRol(["Admin"]), putOrderHandler);
+orderRouter.get("/user/:userId", getUserOrdersHandler);
 
 module.exports = orderRouter;
