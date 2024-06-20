@@ -8,8 +8,22 @@ const postItemController = async (
   quantity,
   amount
 ) => {
-  // Crear el nuevo artículo y asociarlo al carrito
   try {
+    // Verificar si ya existe un ítem con el mismo precio en la orden
+    const existingItem = await Item.findOne({
+      where: {
+        OrderId,
+        final_price,
+      },
+    });
+
+    if (existingItem) {
+      // Si existe un ítem con el mismo precio, no crear un nuevo ítem
+      console.log("Ya existe un ítem con el mismo precio en la orden");
+      return existingItem;
+    }
+
+    // Crear el nuevo artículo y asociarlo al carrito
     const newItem = await Item.create({
       PaymentId,
       OrderId,

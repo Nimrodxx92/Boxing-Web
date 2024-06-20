@@ -15,6 +15,11 @@ orderRouter.post(
   postOrderHandler
 );
 orderRouter.put("/", authMiddleware, checkRol(["Admin"]), putOrderHandler);
-orderRouter.get("/user/:userId", getUserOrdersHandler);
+orderRouter.get(
+  "/:userId",
+  authMiddleware,
+  checkRol(["Admin", "Client"]),
+  getUserOrdersHandler
+);
 
 module.exports = orderRouter;

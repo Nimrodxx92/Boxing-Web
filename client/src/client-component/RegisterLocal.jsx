@@ -1,30 +1,34 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { registerUser } from "../redux/userLocalActions";
+import Home from "../client-views/home"; // Importa el componente Precios
 
 const RegisterLocal = () => {
   const [userData, setUserData] = useState({
     name: "",
     email: "",
     password: "",
-    // repeatPassword: "",
   });
   const dispatch = useDispatch();
-
-  const handleRegistration = () => {
+  const [registered, setRegistered] = useState(false);
+  const handleRegistration = async () => {
     if (userData) {
-      dispatch(
+      await dispatch(
         registerUser(userData?.name, userData?.email, userData?.password)
       );
+      setRegistered(true);
     } else {
-      alert("Las contraseñas no coinciden. Por favor, inténtelo de nuevo.");
+      alert("Por favor, complete todos los campos.");
     }
   };
+  if (registered) {
+    return <Home />;
+  }
+
   return (
     <div>
       <div>
         <h1>Registrarse</h1>
-
         <div>
           <div>
             <span>Nombre y Apellido</span>
@@ -56,16 +60,6 @@ const RegisterLocal = () => {
               }
             />
           </div>
-          {/* <div>
-            <span>Repetir Contraseña</span>
-            <input
-              type="password"
-              value={userData.repeatPassword}
-              onChange={(e) =>
-                setUserData({ ...userData, repeatPassword: e.target.value })
-              }
-            />
-          </div> */}
         </div>
         <button onClick={handleRegistration}>Registrarse</button>
       </div>

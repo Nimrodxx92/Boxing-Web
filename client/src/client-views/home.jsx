@@ -41,7 +41,7 @@ const Home = () => {
           console.log(error);
         });
     }
-  }, [isLocalAuthenticated, allItems, emailLocalUser]);
+  });
 
   return (
     <>
