@@ -12,9 +12,9 @@ const mercadoPago = (pendingOrderId, itemsBody) => {
     items: itemsBody,
 
     back_urls: {
-      success: "https://viandaexpress.vercel.app/payment",
-      failure: "https://viandaexpress.vercel.app/payment",
-      pending: "https://viandaexpress.vercel.app/payment",
+      success: "http://localhost:5173/home",
+      failure: "http://localhost:5173/home",
+      pending: "http://localhost:5173/home",
     },
     auto_return: "approved",
   };

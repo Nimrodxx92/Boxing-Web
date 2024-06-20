@@ -2,50 +2,71 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { fetchDetailPayments } from "../../redux/paymentsActions.js";
-import { useAuth0 } from "@auth0/auth0-react";
 import style from "./detailPayment.module.css";
-import axios from "axios";
+import {
+  setItemsActions,
+  getPendingOrderAction,
+  setCheckboxState,
+} from "../../redux/shopingCartSlice";
+import api from "../../api.js";
 
 const DetailPayments = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
-  const { isAuthenticated, loginWithRedirect, user } = useAuth0();
   const paymentsDetail = useSelector((state) => state.payments.paymentsDetail);
-
-  const pay = async (paymentId, unitPrice) => {
-    try {
-      if (!isAuthenticated) {
-        loginWithRedirect();
-        return;
-      }
-      const response = await axios.post(
-        `/mercadoPago/create-preference:${user.email}`,
-        {
-          paymentId,
-          price: unitPrice,
-        }
-      );
-
-      if (
-        response.data &&
-        response.data.body &&
-        response.data.body.init_point
-      ) {
-        window.location.href = response.data.body.init_point;
-      } else {
-        console.error(
-          "La respuesta del servidor no tiene el formato esperado:",
-          response
-        );
-      }
-    } catch (error) {
-      console.error("Error al procesar el pago:", error);
-    }
-  };
+  const isChecked = useSelector((state) => state.shopingCartReducer.isChecked);
+  const pendingOrder = useSelector(
+    (state) => state.shopingCartReducer.pendingOrder
+  );
+  const localUser = useSelector((state) => state.user.user);
+  const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
+  const isLocalAuthenticated = useSelector(
+    (state) => state.user.isAuthenticated
+  );
+  const emailLocalUser = useSelector((state) => state.user?.user?.email);
 
   useEffect(() => {
     dispatch(fetchDetailPayments(id));
-  }, [dispatch, id]);
+    if (localUser) {
+      dispatch(getPendingOrderAction(localUser.id));
+    }
+  }, [dispatch, id, localUser]);
+
+  useEffect(() => {
+    if (isLocalAuthenticated && !allItems.length && emailLocalUser) {
+      api
+        .post("/order", { email: emailLocalUser })
+        .then((response) => {
+          return response;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }, [isLocalAuthenticated, allItems.length, emailLocalUser]);
+
+  const handleCheckboxChange = (event) => {
+    const checked = event.target.checked;
+    dispatch(setCheckboxState(checked));
+
+    if (checked && pendingOrder.id) {
+      const itemExists = allItems.some(
+        (item) => item.PaymentsId === paymentsDetail.id
+      );
+      if (!itemExists) {
+        dispatch(
+          setItemsActions({
+            Payments: paymentsDetail,
+            PaymentsId: paymentsDetail.id,
+            OrderId: pendingOrder.id,
+            final_price: paymentsDetail.price,
+            quantity: 1,
+            amount: paymentsDetail.price,
+          })
+        );
+      }
+    }
+  };
 
   return (
     <div>
@@ -53,9 +74,18 @@ const DetailPayments = () => {
         <h1>{paymentsDetail.name}</h1>
         <p>{paymentsDetail.id}</p>
         <div>
+          <input
+            type="checkbox"
+            id="terms"
+            checked={isChecked}
+            onChange={handleCheckboxChange}
+          />
+          <label htmlFor="terms">Aceptar términos y condiciones</label>
+        </div>
+        <div>
           <button
-            onClick={() => pay(paymentsDetail.id, paymentsDetail.price)}
-            className={style.button}
+            className={`${style.button} ${isChecked ? style.blackButton : ""}`}
+            disabled={!isChecked}
           >
             Pagar
           </button>

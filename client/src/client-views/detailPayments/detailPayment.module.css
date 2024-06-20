@@ -2,8 +2,12 @@
   position: relative;
   padding: 10px 20px;
   color: #ffff;
-  background-color: #da1d25;
+  background-color: grey;
   border: none;
   cursor: pointer;
   border: 3px groove #da1d25;
+}
+
+.blackButton {
+  background-color: red;
 }

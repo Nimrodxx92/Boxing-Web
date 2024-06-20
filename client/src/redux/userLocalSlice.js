@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  user: null,
+  user: JSON.parse(localStorage.getItem("user")) || null,
   error: null,
   isAuthenticated: !!localStorage.getItem("token"),
   token: localStorage.getItem("token"),
@@ -15,28 +15,33 @@ const userSlice = createSlice({
       state.user = action.payload;
       state.error = null;
       state.isAuthenticated = true;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     registerUserFailure: (state, action) => {
       state.user = null;
       state.error = action.payload;
       state.isAuthenticated = false;
+      localStorage.removeItem("user");
     },
     loginLocalSuccess: (state, action) => {
       state.user = action.payload;
       state.error = null;
       state.isAuthenticated = true;
+      localStorage.setItem("user", JSON.stringify(action.payload));
     },
     loginLocalFailure: (state, action) => {
       state.user = null;
       state.error = action.payload;
       state.isAuthenticated = false;
+      localStorage.removeItem("user");
     },
     logoutUser: (state) => {
       state.user = null;
       state.error = null;
       state.isAuthenticated = false;
       state.token = null;
-      localStorage.removeItem("token"); // Eliminar el token del localStorage
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
     },
     setToken: (state, action) => {
       state.token = action.payload;
