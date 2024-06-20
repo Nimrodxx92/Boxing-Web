@@ -813,4 +813,88 @@ button {
 }
 .price__description p span {
   color: #da1d25;
+}
+
+.borderlogins {
+  padding: 5vw 30vw;
+  border: 1px solid black;
+  background-color: rgb(19, 18, 18);
+  font-family: "Poppins", sans-serif;
+}
+.borderlogins .forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: black;
+  padding: 3vw;
+}
+.borderlogins .forms label {
+  color: white;
+  margin: 0.5vw;
+  font-family: "Teko", sans-serif;
+  font-size: 1.5vw;
+}
+.borderlogins .forms input {
+  width: 250px;
+  height: 25px;
+  padding: 0.2vw 0.5vw;
+  background-color: rgb(44, 44, 44);
+  color: rgb(139, 139, 139);
+  font-weight: bold;
+  border: none;
+  text-align: center;
+}
+.borderlogins .forms button {
+  background-color: #da1d25;
+  color: white;
+  font-weight: 400;
+  padding: 0.78rem;
+}
+.borderlogins .forms .btn-login {
+  margin-top: 2vw;
+}
+.borderlogins .logins {
+  display: flex;
+  align-items: center;
+  padding: 3vw;
+  gap: 1vw;
+}
+.borderlogins .logins a {
+  background-color: #da1d25;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 125px;
+  height: 40px;
+}
+
+.container__register {
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+.container__register .container__forms {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 2vw;
+  font-family: "Teko", sans-serif;
+}
+.container__register .container__forms input {
+  margin: 0.5vw;
+  width: 250px;
+  height: 25px;
+  padding: 0.2vw 0.5vw;
+  background-color: rgb(44, 44, 44);
+  color: rgb(139, 139, 139);
+  font-weight: bold;
+  border: none;
+  text-align: center;
+}
+.container__register button {
+  background-color: #da1d25;
+  color: white;
+  font-weight: 400;
+  padding: 0.78rem;
 }/*# sourceMappingURL=main.css.map */

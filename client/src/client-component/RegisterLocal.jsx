@@ -26,10 +26,10 @@ const RegisterLocal = () => {
   }
 
   return (
-    <div>
-      <div>
+    <>
+      <div className="container__register">
         <h1>Registrarse</h1>
-        <div>
+        <div className="container__forms">
           <div>
             <span>Nombre y Apellido</span>
             <input
@@ -63,7 +63,7 @@ const RegisterLocal = () => {
         </div>
         <button onClick={handleRegistration}>Registrarse</button>
       </div>
-    </div>
+    </>
   );
 };
 

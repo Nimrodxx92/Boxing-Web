@@ -19,36 +19,41 @@ const LocalLogin = () => {
     }
   };
   return (
-    <div>
-      <h1>Local Login</h1>
+    <>
       <form>
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          value={userData.email}
-          onChange={(e) => setUserData({ ...userData, email: e.target.value })}
-        />
-        <label htmlFor="password">Password:</label>
-        <input
-          type="password"
-          id="password"
-          name="password"
-          value={userData.password}
-          onChange={(e) =>
-            setUserData({ ...userData, password: e.target.value })
-          }
-        />
-        <button type="button" onClick={handleLogin}>
-          Iniciar Sesión
-        </button>
-        <Link to="/RegistroLocal">REGISTRO LOCAL</Link>
-        <Link>
-          <LoginButton />
-        </Link>
+        <div className="borderlogins">
+          <div className="forms">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={userData.email}
+              onChange={(e) =>
+                setUserData({ ...userData, email: e.target.value })
+              }
+            />
+            <label htmlFor="password">Password:</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={userData.password}
+              onChange={(e) =>
+                setUserData({ ...userData, password: e.target.value })
+              }
+            />
+            <button className="btn-login" type="button" onClick={handleLogin}>
+              Iniciar Sesión
+            </button>
+            <div className="logins">
+              <Link to="/RegistroLocal">Registrarse</Link>
+              <LoginButton />
+            </div>
+          </div>
+        </div>
       </form>
-    </div>
+    </>
   );
 };
 

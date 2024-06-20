@@ -1,0 +1,29 @@
+.container__register {
+  background-color: black;
+  color: white;
+  text-align: center;
+  .container__forms {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 2vw;
+    font-family: "Teko", sans-serif;
+    input {
+      margin: 0.5vw;
+      width: 250px;
+      height: 25px;
+      padding: 0.2vw 0.5vw;
+      background-color: rgb(44, 44, 44);
+      color: rgb(139, 139, 139);
+      font-weight: bold;
+      border: none;
+      text-align: center;
+    }
+  }
+  button {
+    background-color: #da1d25;
+    color: white;
+    font-weight: 400;
+    padding: 0.78rem;
+  }
+}
