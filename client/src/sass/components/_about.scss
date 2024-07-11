@@ -1,27 +1,46 @@
 .about__container {
   background-color: black;
-  padding: 5vw;
+  padding: 7vw;
   .firts__about {
     display: flex;
-    padding: 2vw;
-    gap: 5vw;
     img {
-      width: 30%;
+      width: 40%;
     }
     .title-firts-about {
+      padding: 2vw;
+      margin-left: 5vw;
+      width: 50%;
       h2 {
         font-family: "Teko", sans-serif;
         color: white;
-        font-size: 3.5vw;
+        font-size: 3vw;
         text-transform: uppercase;
       }
       p {
         font-family: "Poppins", sans-serif;
         color: gray;
+        font-size: 1.1vw;
       }
     }
     .skills-entrenamiento {
       color: white;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+      margin-top: 2.5vw;
+      h3 {
+        font-family: "Teko", sans-serif;
+        font-size: 1.8vw;
+      }
+    }
+  }
+}
+
+.subabout_container {
+  .sub-img-about {
+    text-align: center;
+    img {
+      width: 30%;
     }
   }
 }

@@ -7,21 +7,23 @@ import {
 } from "./userLocalSlice";
 import { setToken } from "./userLocalSlice";
 
-export const registerUser = (name, email, password) => async (dispatch) => {
-  try {
-    const response = await api.post("/register", {
-      name,
-      email,
-      password,
-    });
+export const registerUser =
+  (name, surname, email, password) => async (dispatch) => {
+    try {
+      const response = await api.post("/register", {
+        name,
+        surname,
+        email,
+        password,
+      });
 
-    dispatch(registerUserSuccess(response.data.data.user));
-    dispatch(setToken(response.data.data.token));
-    localStorage.setItem("token", response.data.data.token);
-  } catch (error) {
-    dispatch(registerUserFailure(error.message));
-  }
-};
+      dispatch(registerUserSuccess(response.data.data.user));
+      dispatch(setToken(response.data.data.token));
+      localStorage.setItem("token", response.data.data.token);
+    } catch (error) {
+      dispatch(registerUserFailure(error.message));
+    }
+  };
 
 export const loginLocal = (email, password) => async (dispatch) => {
   try {

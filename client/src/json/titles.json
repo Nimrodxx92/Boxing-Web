@@ -1,7 +1,33 @@
 {
   "about": {
     "title": "Nosotros",
-    "description": "Somos una empresa dedicada a..."
+    "description": "¡Bienvenido/a a nuestra comunidad de boxeo! ",
+    "clubInfo": {
+      "title": "Nuestro Club",
+      "description": "En nuestro gimnasio, ubicado en Castelar Sur, no solo nos dedicamos a entrenar cuerpos, sino que también forjamos espíritus. Somos mucho más que un lugar para aprender a boxear, somos una familia unida por el deseo de superación personal y la pasión por el deporte.",
+      "skills": [
+        {
+          "name": "Entrenamientos",
+          "description": "Ofrecemos entrenamientos para maximizar el rendimiento físico adaptados a todos los niveles."
+        },
+        {
+          "name": "Precios",
+          "description": "Tenemos precios que se ajustan a tus necesidades y presupuesto, sin comprometer la calidad del servicio."
+        },
+        {
+          "name": "Equipos",
+          "description": "Contamos con equipos y materiales de entrenamiento de alta calidad para asegurar que nuestros boxeadores puedan desarrollarse al máximo."
+        },
+        {
+          "name": "Profesores",
+          "description": "Nuestros profesores se destacan por su dedicación y experiencia en el arte del boxeo, guiando a los estudiantes con técnicas avanzadas para alcanzar su máximo potencial."
+        }
+      ],
+      "profesor": "Diego Noriega",
+      "cargo": "Entrenador"
+    },
+    "mision": "Nuestra misión es proporcionar un espacio inclusivo y motivador donde la comunidad local pueda descubrir y desarrollar su pasión por el boxeo. Nos comprometemos a ofrecer entrenamientos de alta calidad, fomentar la disciplina y promover un estilo de vida activo y saludable entre nuestros miembros.",
+    "vision": "Nos visualizamos como el centro de referencia en nuestro barrio para el aprendizaje del boxeo, reconocidos por nuestra dedicación a mejorar la forma física y mental de nuestros participantes. Buscamos ser un punto de encuentro donde el trabajo duro, la camaradería y el progreso personal se entrelacen para formar una comunidad más fuerte y resiliente."
   },
   "training": {
     "title": "Entrenamiento",

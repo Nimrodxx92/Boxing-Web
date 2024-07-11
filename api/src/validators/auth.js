@@ -7,8 +7,19 @@ const validatorRegister = [
     .withMessage("El nombre es obligatorio")
     .notEmpty()
     .withMessage("El nombre no puede estar vacío")
-    .isLength({ min: 3, max: 99 })
-    .withMessage("El nombre debe tener entre 3 y 99 caracteres"),
+    .isLength({ min: 3, max: 15 })
+    .withMessage("El nombre debe tener entre 3 y 99 caracteres")
+    .matches(/^[a-zA-Z\s]*$/)
+    .withMessage("El nombre solo debe contener letras y espacios"),
+  check("surname")
+    .exists()
+    .withMessage("El apellido es obligatorio")
+    .notEmpty()
+    .withMessage("El apellido no puede estar vacío")
+    .isLength({ min: 3, max: 15 })
+    .withMessage("El apellido debe tener entre 3 y 99 caracteres")
+    .matches(/^[a-zA-Z\s]*$/)
+    .withMessage("El apellido solo debe contener letras y espacios"),
   check("email")
     .exists()
     .withMessage("El correo electrónico es obligatorio")
