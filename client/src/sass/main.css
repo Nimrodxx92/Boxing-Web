@@ -750,28 +750,47 @@ button {
 
 .about__container {
   background-color: black;
-  padding: 5vw;
+  padding: 7vw;
 }
 .about__container .firts__about {
   display: flex;
-  padding: 2vw;
-  gap: 5vw;
 }
 .about__container .firts__about img {
-  width: 30%;
+  width: 40%;
+}
+.about__container .firts__about .title-firts-about {
+  padding: 2vw;
+  margin-left: 5vw;
+  width: 50%;
 }
 .about__container .firts__about .title-firts-about h2 {
   font-family: "Teko", sans-serif;
   color: white;
-  font-size: 3.5vw;
+  font-size: 3vw;
   text-transform: uppercase;
 }
 .about__container .firts__about .title-firts-about p {
   font-family: "Poppins", sans-serif;
   color: gray;
+  font-size: 1.1vw;
 }
 .about__container .firts__about .skills-entrenamiento {
   color: white;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+  margin-top: 2.5vw;
+}
+.about__container .firts__about .skills-entrenamiento h3 {
+  font-family: "Teko", sans-serif;
+  font-size: 1.8vw;
+}
+
+.subabout_container .sub-img-about {
+  text-align: center;
+}
+.subabout_container .sub-img-about img {
+  width: 30%;
 }
 
 .breadcrumb {
@@ -856,8 +875,8 @@ button {
 .borderlogins .logins {
   display: flex;
   align-items: center;
-  padding: 3vw;
-  gap: 1vw;
+  padding: 2vw;
+  gap: 0.5vw;
 }
 .borderlogins .logins a {
   background-color: #da1d25;
@@ -866,35 +885,66 @@ button {
   justify-content: center;
   align-items: center;
   width: 125px;
-  height: 40px;
+  height: 45px;
+}
+
+.login {
+  margin: 0;
 }
 
 .container__register {
   background-color: black;
   color: white;
   text-align: center;
+  padding: 5vw;
 }
-.container__register .container__forms {
+
+.container__register h1 {
+  font-family: "Teko", sans-serif;
+  font-weight: 500;
+  font-size: 3.5vw;
+  color: #da1d25;
+  text-transform: uppercase;
+  margin-bottom: 2vw;
+}
+
+.container__forms {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 2vw;
-  font-family: "Teko", sans-serif;
+  margin-top: 2vw;
 }
-.container__register .container__forms input {
-  margin: 0.5vw;
-  width: 250px;
-  height: 25px;
-  padding: 0.2vw 0.5vw;
+
+.input-container {
+  width: 40%;
+}
+
+.input-group {
+  margin-bottom: 1vw;
+}
+
+.input-group input {
+  width: 75%;
+  height: 30px;
+  padding: 0.5vw;
   background-color: rgb(44, 44, 44);
   color: rgb(139, 139, 139);
   font-weight: bold;
   border: none;
   text-align: center;
 }
-.container__register button {
+
+button {
   background-color: #da1d25;
   color: white;
-  font-weight: 400;
-  padding: 0.78rem;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding: 0.9vw 2vw;
+  margin-top: 2vw;
+  cursor: pointer;
+  border: none;
+}
+
+button:hover {
+  background-color: #f85754;
 }/*# sourceMappingURL=main.css.map */
