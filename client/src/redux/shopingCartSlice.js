@@ -88,24 +88,26 @@ export const getPendingOrderAction = (userId) => async (dispatch) => {
   }
 };
 
-export const setItemsActions =
-  ({ Payments, PaymentsId, OrderId, final_price, quantity, amount }) =>
-  async (dispatch) => {
-    try {
-      const item = await api
-        .post("/item", {
-          PaymentsId: PaymentsId,
-          OrderId: OrderId,
-          final_price: final_price,
-          quantity: quantity,
-          amount: amount,
-        })
-        .then((r) => r.data);
-      dispatch(setItems({ Payments: Payments, ...item }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const setItemsActions = ({ Payments, PaymentId, OrderId, final_price, quantity, amount }) => async (dispatch) => {
+  try {
+    const item = await api
+      .post("/item", {
+        Payment: Payments,  // Enviar el objeto Payments completo
+        PaymentId: PaymentId,
+        OrderId: OrderId,
+        final_price: final_price,
+        quantity: quantity,
+        amount: amount,
+      })
+      .then((r) => r.data);
+    console.log("respuesta del servidor =>", item);
+    dispatch(setItems({ Payments: Payments, ...item }));
+    console.log("setItemsActions", item);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 
 export const deleteItemActions =
   ({ id, OrderId }) =>

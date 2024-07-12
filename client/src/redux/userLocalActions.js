@@ -17,13 +17,16 @@ export const registerUser =
         password,
       });
 
-      dispatch(registerUserSuccess(response.data.data.user));
-      dispatch(setToken(response.data.data.token));
-      localStorage.setItem("token", response.data.data.token);
-    } catch (error) {
-      dispatch(registerUserFailure(error.message));
-    }
-  };
+
+    dispatch(registerUserSuccess(response.data.data.user));
+    dispatch(setToken(response.data.data.token));
+    localStorage.setItem("token", response.data.data.token);
+  } catch (error) {
+    dispatch(registerUserFailure(error.message));
+    console.log(error.response.data.errors);
+  }
+};
+
 
 export const loginLocal = (email, password) => async (dispatch) => {
   try {
