@@ -20,6 +20,7 @@ export const registerUser = (name, email, password) => async (dispatch) => {
     localStorage.setItem("token", response.data.data.token);
   } catch (error) {
     dispatch(registerUserFailure(error.message));
+    console.log(error.response.data.errors);
   }
 };
 

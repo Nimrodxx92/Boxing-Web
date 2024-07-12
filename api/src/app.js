@@ -10,6 +10,7 @@ const app = express();
 // MIDDLEWARES
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 // MIDDLEWARE: CORS CONFIGURATION
 app.use(cors());
 

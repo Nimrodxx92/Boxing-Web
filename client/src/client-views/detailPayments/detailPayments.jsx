@@ -15,14 +15,10 @@ const DetailPayments = () => {
   const { id } = useParams();
   const paymentsDetail = useSelector((state) => state.payments.paymentsDetail);
   const isChecked = useSelector((state) => state.shopingCartReducer.isChecked);
-  const pendingOrder = useSelector(
-    (state) => state.shopingCartReducer.pendingOrder
-  );
+  const pendingOrder = useSelector((state) => state.shopingCartReducer.pendingOrder);
   const localUser = useSelector((state) => state.user.user);
   const allItems = useSelector((state) => state.shopingCartReducer.itemsOrder);
-  const isLocalAuthenticated = useSelector(
-    (state) => state.user.isAuthenticated
-  );
+  const isLocalAuthenticated = useSelector((state) => state.user.isAuthenticated);
   const emailLocalUser = useSelector((state) => state.user?.user?.email);
 
   useEffect(() => {
@@ -34,33 +30,39 @@ const DetailPayments = () => {
 
   useEffect(() => {
     if (isLocalAuthenticated && !allItems.length && emailLocalUser) {
-      api
-        .post("/order", { email: emailLocalUser })
+      api.post("/order", { email: emailLocalUser })
         .then((response) => {
-          return response;
+          console.log("Order created successfully:", response.data);
         })
         .catch((error) => {
-          console.log(error);
+          console.error("Error creating order:", error.response ? error.response.data : error.message);
         });
     }
   }, [isLocalAuthenticated, allItems.length, emailLocalUser]);
+  
 
   const handleCheckboxChange = (event) => {
     const checked = event.target.checked;
     dispatch(setCheckboxState(checked));
-
+  
     if (checked && pendingOrder.id) {
-      const itemExists = allItems.some(
-        (item) => item.PaymentsId === paymentsDetail.id
-      );
+      const itemExists = allItems.some((item) => item.PaymentId === paymentsDetail.id);
       if (!itemExists) {
+        console.log("Sending data to setItemsActions:", {
+          Payments: paymentsDetail,
+          PaymentId: paymentsDetail.id,
+          OrderId: pendingOrder.id,
+          final_price: paymentsDetail.price,
+          quantity: paymentsDetail.quantity,
+          amount: paymentsDetail.price,
+        });
         dispatch(
           setItemsActions({
             Payments: paymentsDetail,
-            PaymentsId: paymentsDetail.id,
+            PaymentId: paymentsDetail.id,
             OrderId: pendingOrder.id,
             final_price: paymentsDetail.price,
-            quantity: 1,
+            quantity: paymentsDetail.quantity,
             amount: paymentsDetail.price,
           })
         );
