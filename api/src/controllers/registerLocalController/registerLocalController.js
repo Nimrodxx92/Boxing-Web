@@ -4,7 +4,13 @@ const { encrypt } = require("../../utils/handlePassword");
 
 const adminEmails = ["silviojuarez60@gmail.com", "cnmonsalvo@gmail.com"];
 
-const registerLocalController = async (name, email, status, plainPassword) => {
+const registerLocalController = async (
+  name,
+  surname,
+  email,
+  status,
+  plainPassword
+) => {
   let type = "Client";
 
   if (adminEmails.includes(email)) {
@@ -20,6 +26,7 @@ const registerLocalController = async (name, email, status, plainPassword) => {
 
   const newUser = await User.create({
     name,
+    surname,
     email,
     type,
     status,
