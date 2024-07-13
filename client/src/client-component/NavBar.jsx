@@ -3,11 +3,11 @@ import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/box-logo.png";
 import MobileNav from "./MobileNav";
-import { useAuth0 } from "@auth0/auth0-react"; // Importa el hook de Auth0
+import { useAuth0 } from "@auth0/auth0-react";
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../redux/userLocalSlice";
 import Modal from "./Modal";
-import LocalLogin from "../client-component/LocalLogin"; // Asegúrate de importar tu componente LocalLogin
+import LocalLogin from "../client-component/LocalLogin";
 
 function NavBar() {
   const { isAuthenticated: isAuthenticatedAuth0, logout: logoutAuth0 } = useAuth0();
@@ -26,7 +26,7 @@ function NavBar() {
   ];
 
   const [openMenu, setOpenMenu] = useState(false);
-  const [isLoginModalOpen, setLoginModalOpen] = useState(false); // Estado para el modal
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -87,7 +87,7 @@ function NavBar() {
         </div>
       </nav>
       <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
-        <LocalLogin />
+        <LocalLogin closeModal={closeLoginModal} />
       </Modal>
     </>
   );

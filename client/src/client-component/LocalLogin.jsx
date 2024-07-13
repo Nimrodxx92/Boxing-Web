@@ -4,7 +4,7 @@ import { loginLocal } from "../redux/userLocalActions";
 import LoginButton from "../loginComponent/loginButton/loginButton";
 import { Link } from "react-router-dom";
 
-const LocalLogin = () => {
+const LocalLogin = ({ closeModal }) => { // Recibe la función closeModal como prop
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -18,6 +18,7 @@ const LocalLogin = () => {
       alert("El email o la contraseña no coincide");
     }
   };
+
   return (
     <>
       <form>
@@ -47,7 +48,7 @@ const LocalLogin = () => {
               Iniciar Sesión
             </button>
             <div className="logins">
-              <Link to="/RegistroLocal">Registrarse</Link>
+              <Link to="/RegistroLocal" onClick={closeModal}>Registrarse</Link> {/* Cierra el modal al hacer clic */}
               <LoginButton />
             </div>
           </div>
