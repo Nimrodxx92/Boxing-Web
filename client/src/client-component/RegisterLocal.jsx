@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux/userLocalActions";
-import Home from "../client-views/home"; // Importa el componente Precios
+import Home from "../client-views/home"; // Importa el componente Home
 
 const RegisterLocal = () => {
   const [userData, setUserData] = useState({
@@ -12,30 +12,46 @@ const RegisterLocal = () => {
   });
   const dispatch = useDispatch();
   const [registered, setRegistered] = useState(false);
+  const [registrationError, setRegistrationError] = useState(false);
 
-  const handleRegistration = async () => {
+  // Selecciona los errores del estado de Redux y proporciona un valor predeterminado vacío si es null o undefined
+  const errors = useSelector((state) => state.user.error) || [];
+
+  const handleRegistration =  () => {
     if (
       userData.name &&
       userData.surname &&
       userData.email &&
       userData.password
     ) {
-      await dispatch(
+      const response = dispatch(
         registerUser(
-          userData?.name,
-          userData?.surname,
-          userData?.email,
-          userData?.password
+          userData.name,
+          userData.surname,
+          userData.email,
+          userData.password
         )
       );
-      setRegistered(true);
+      console.log(response);
+      if (response.type === 'registerUser/fulfilled') {
+        setRegistered(true);
+      } else {
+        setRegistrationError(true);
+      }
     } else {
       alert("Por favor, complete todos los campos.");
     }
   };
+
   if (registered) {
     return <Home />;
   }
+
+  // Encuentra el error específico de cada campo
+  const getErrorMessage = (field) => {
+    const error = errors.find((err) => err.path === field);
+    return error ? error.msg : null;
+  };
 
   return (
     <>
@@ -53,6 +69,9 @@ const RegisterLocal = () => {
                 }
                 className="input-field"
               />
+              {getErrorMessage("name") && (
+                <div className="error-message">{getErrorMessage("name")}</div>
+              )}
             </div>
             <div className="input-group">
               <input
@@ -64,6 +83,9 @@ const RegisterLocal = () => {
                 }
                 className="input-field"
               />
+              {getErrorMessage("surname") && (
+                <div className="error-message">{getErrorMessage("surname")}</div>
+              )}
             </div>
             <div className="input-group">
               <input
@@ -75,6 +97,9 @@ const RegisterLocal = () => {
                 }
                 className="input-field"
               />
+              {getErrorMessage("email") && (
+                <div className="error-message">{getErrorMessage("email")}</div>
+              )}
             </div>
             <div className="input-group">
               <input
@@ -86,9 +111,13 @@ const RegisterLocal = () => {
                 }
                 className="input-field"
               />
+              {getErrorMessage("password") && (
+                <div className="error-message">{getErrorMessage("password")}</div>
+              )}
             </div>
           </div>
           <button onClick={handleRegistration}>Registrarse</button>
+          {registrationError && <div className="error-message">Error en el registro. Por favor, intente de nuevo.</div>}
         </div>
       </div>
     </>

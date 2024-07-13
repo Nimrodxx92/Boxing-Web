@@ -1,3 +1,4 @@
+// src/components/NavBar.jsx
 import { NavLink, Link } from "react-router-dom";
 import { useState } from "react";
 import Logo from "../assets/box-logo.png";
@@ -5,14 +6,13 @@ import MobileNav from "./MobileNav";
 import { useAuth0 } from "@auth0/auth0-react"; // Importa el hook de Auth0
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../redux/userLocalSlice";
+import Modal from "./Modal";
+import LocalLogin from "../client-component/LocalLogin"; // Asegúrate de importar tu componente LocalLogin
 
 function NavBar() {
-  const { isAuthenticated: isAuthenticatedAuth0, logout: logoutAuth0 } =
-    useAuth0();
+  const { isAuthenticated: isAuthenticatedAuth0, logout: logoutAuth0 } = useAuth0();
 
-  const isAuthenticatedRedux = useSelector(
-    (state) => state.user.isAuthenticated
-  );
+  const isAuthenticatedRedux = useSelector((state) => state.user.isAuthenticated);
   const dispatch = useDispatch();
 
   const isAuthenticated = isAuthenticatedAuth0 || isAuthenticatedRedux;
@@ -26,6 +26,7 @@ function NavBar() {
   ];
 
   const [openMenu, setOpenMenu] = useState(false);
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false); // Estado para el modal
 
   const toggleMenu = () => {
     setOpenMenu(!openMenu);
@@ -38,6 +39,14 @@ function NavBar() {
     if (isAuthenticatedRedux) {
       dispatch(logoutUser());
     }
+  };
+
+  const openLoginModal = () => {
+    setLoginModalOpen(true);
+  };
+
+  const closeLoginModal = () => {
+    setLoginModalOpen(false);
   };
 
   return (
@@ -70,13 +79,16 @@ function NavBar() {
                 CERRAR SESIÓN
               </button>
             ) : (
-              <Link to="/LocalLogin" className="login">
+              <button onClick={openLoginModal} className="login">
                 INICIAR SESIÓN
-              </Link>
+              </button>
             )}
           </div>
         </div>
       </nav>
+      <Modal isOpen={isLoginModalOpen} onClose={closeLoginModal}>
+        <LocalLogin />
+      </Modal>
     </>
   );
 }
