@@ -1,19 +1,16 @@
 .borderlogins {
-  padding: 5vw 30vw;
-  border: 1px solid black;
-  background-color: rgb(19, 18, 18);
   font-family: "Poppins", sans-serif;
   .forms {
     display: flex;
     flex-direction: column;
     align-items: center;
     background-color: black;
-    padding: 3vw;
+    padding: 1vw;
     label {
-      color: white;
+      color: rgb(124, 122, 122);
       margin: 0.5vw;
       font-family: "Teko", sans-serif;
-      font-size: 1.5vw;
+      font-size: 1.8vw;
     }
     input {
       width: 250px;
