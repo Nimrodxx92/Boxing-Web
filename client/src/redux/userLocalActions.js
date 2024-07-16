@@ -17,15 +17,18 @@ export const registerUser =
         password,
       });
 
+      dispatch(registerUserSuccess(response.data.data.user));
+      dispatch(setToken(response.data.data.token));
+      localStorage.setItem("token", response.data.data.token);
 
-    dispatch(registerUserSuccess(response.data.data.user));
-    dispatch(setToken(response.data.data.token));
-    localStorage.setItem("token", response.data.data.token);
-  } catch (error) {
-    dispatch(registerUserFailure(error.message));
-    console.log(error.response.data.errors);
-  }
+      // Asegúrate de retornar la respuesta para que esté disponible en handleRegistration
+      return response;
+    } catch (error) {
+      dispatch(registerUserFailure(error.response.data.errors));
+      throw error; // Lanza el error para manejarlo en handleRegistration
+    }
 };
+
 
 
 export const loginLocal = (email, password) => async (dispatch) => {

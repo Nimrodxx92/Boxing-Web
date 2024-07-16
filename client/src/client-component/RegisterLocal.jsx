@@ -17,36 +17,43 @@ const RegisterLocal = () => {
   // Selecciona los errores del estado de Redux y proporciona un valor predeterminado vacío si es null o undefined
   const errors = useSelector((state) => state.user.error) || [];
 
-  const handleRegistration =  () => {
+  const handleRegistration = async () => {
     if (
       userData.name &&
       userData.surname &&
       userData.email &&
       userData.password
     ) {
-      const response = dispatch(
-        registerUser(
-          userData.name,
-          userData.surname,
-          userData.email,
-          userData.password
-        )
-      );
-      console.log(response);
-      if (response.type === 'registerUser/fulfilled') {
-        setRegistered(true);
-      } else {
+      try {
+        const response = await dispatch(
+          registerUser(
+            userData.name,
+            userData.surname,
+            userData.email,
+            userData.password
+          )
+        );
+  
+        // Verifica la estructura de la respuesta para asegurarte de acceder correctamente a los datos
+        console.log(response.status);
+  
+        if (response.status === 201) {
+          setRegistered(true);
+        } else {
+          setRegistrationError(true);
+        }
+      } catch (error) {
+        console.error('Error al registrar usuario:', error);
         setRegistrationError(true);
       }
     } else {
       alert("Por favor, complete todos los campos.");
     }
   };
-
+  
   if (registered) {
     return <Home />;
   }
-
   // Encuentra el error específico de cada campo
   const getErrorMessage = (field) => {
     const error = errors.find((err) => err.path === field);

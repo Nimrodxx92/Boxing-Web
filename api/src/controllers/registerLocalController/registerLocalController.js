@@ -3,6 +3,7 @@ const { tokenSign } = require("../../utils/handleJsonWebToken");
 const { encrypt } = require("../../utils/handlePassword");
 
 const adminEmails = ["silviojuarez60@gmail.com", "cnmonsalvo@gmail.com"];
+const MAX_USERS = 100; 
 
 const registerLocalController = async (
   name,
@@ -15,6 +16,12 @@ const registerLocalController = async (
 
   if (adminEmails.includes(email)) {
     type = "Admin";
+  }
+
+  // Contar el número actual de usuarios
+  const userCount = await User.count();
+  if (userCount >= MAX_USERS) {
+    throw new Error("Se ha alcanzado el límite máximo de usuarios.");
   }
 
   const existingUser = await User.findOne({ where: { email: email } });
@@ -32,8 +39,7 @@ const registerLocalController = async (
     status,
     password: encryptedPassword,
   });
-  console.log("Nuevo usuario creado:", newUser);
-  newUser.set("password", undefined, { srtrict: false });
+  newUser.set("password", undefined, { strict: false });
 
   const data = {
     token: await tokenSign(newUser),
