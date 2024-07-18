@@ -30,9 +30,11 @@ const About = () => {
       </section>
       <section className="subabout_container">
         <div className="sub-img-about">
+          <div className="text-about">
+            <p>{data.about.mision}</p>
+            <p>{data.about.vision}</p>
+          </div>
           <img src={boxerAbout} alt="" />
-          <h3>{data.about.mision}</h3>
-          <h3>{data.about.vision}</h3>
         </div>
       </section>
     </>

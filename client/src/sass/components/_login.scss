@@ -34,6 +34,7 @@
   }
   .logins {
     display: flex;
+    flex-direction: column;
     align-items: center;
     padding: 2vw;
     gap: 0.5vw;
@@ -43,12 +44,21 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      width: 125px;
+      width: 13.5vw;
       height: 45px;
+    }
+    p {
+      color: white;
     }
   }
 }
 
 .login {
   margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 13.5vw;
+  height: 45px;
 }

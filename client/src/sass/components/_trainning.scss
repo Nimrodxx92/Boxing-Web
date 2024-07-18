@@ -1,0 +1,29 @@
+.trainning__container {
+  background-color: black;
+  padding: 5vw;
+  .training-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    text-align: center;
+    .training-item {
+      padding: 2px;
+      border: 1px solid #ccc;
+      background-color: #c7c5c5;
+      font-family: "Poppins", sans-serif;
+      h3 {
+        margin-bottom: 1vw;
+        color: rgb(31, 30, 30);
+      }
+      img {
+        width: 100%;
+      }
+      div {
+        padding: 0.7vw;
+        p {
+          color: rgb(41, 41, 41);
+        }
+      }
+    }
+  }
+}
