@@ -37,8 +37,24 @@
 }
 
 .subabout_container {
+  background-color: black;
+  font-family: "Poppins", sans-serif;
+  font-size: 1.2vw;
+  font-weight: 400;
   .sub-img-about {
+    display: flex;
     text-align: center;
+    justify-content: center;
+    gap: 5vw;
+    .text-about {
+      width: 50%;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4vw;
+      color: gray;
+      background-color: black;
+    }
     img {
       width: 30%;
     }

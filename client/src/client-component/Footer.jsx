@@ -20,8 +20,9 @@ const Footer = () => {
       <section className="container__footer">
         <div className="data__footer">
           <h4>Dirección</h4>
-          <p>Arturo Guastavino 3750,</p>
-          <p>Castelar Sur, Bs As (CP: 1712)</p>
+          <p>Arturo Guastavino 3750</p>
+          <p>Castelar Sur, Bs As</p>
+          <p>CP: 1712</p>
         </div>
         <div className="redes__footer">
           <h4>Redes sociales</h4>
@@ -43,11 +44,9 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div>
-          <p>Teléfono: </p>
-          <p>11-6488-4537</p>
-          <p>Email: </p>
-          <p>diegonoriega@gmail.com</p>
+        <div className="data__footer">
+          <h4>Teléfono</h4>
+          <p className="phone">11-6488-4537</p>
         </div>
         <nav className="nav__footer">
           <ul className="footer__links">
@@ -63,7 +62,7 @@ const Footer = () => {
       </section>
       <div className="separador"></div>
       <p className="copy__name">
-        &copy; {new Date().getFullYear()} Diego Noriega
+        &copy; {new Date().getFullYear()} <span>Diego</span> Noriega
       </p>
     </footer>
   );
