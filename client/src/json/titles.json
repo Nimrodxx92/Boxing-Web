@@ -31,7 +31,45 @@
   },
   "training": {
     "title": "Entrenamiento",
-    "description": "Ofrecemos una amplia gama de programas de entrenamiento..."
+    "description": "Ofrecemos una amplia gama de programas de entrenamiento...",
+    "trainingTypes": [
+      {
+        "imgTrainning": "/src/assets/box.jpg",
+        "type": "Entrenamiento de Resistencia",
+        "description": "Focalizado en mejorar la resistencia cardiovascular y muscular.",
+        "focus": "Enfocado en sesiones prolongadas de trabajo aeróbico y anaeróbico."
+      },
+      {
+        "imgTrainning": "/src/assets/box.jpg",
+        "type": "Entrenamiento Técnico",
+        "description": "Orientado a perfeccionar las técnicas básicas y avanzadas del boxeo.",
+        "focus": "Desarrollo y refinamiento de habilidades como golpes, esquivas y movimientos de pies."
+      },
+      {
+        "imgTrainning": "/src/assets/box.jpg",
+        "type": "Sparring",
+        "description": "Simulación de combates controlados para aplicar técnicas aprendidas.",
+        "focus": "Práctica en condiciones de combate simuladas con énfasis en estrategia y adaptabilidad."
+      },
+      {
+        "imgTrainning": "/src/assets/box.jpg",
+        "type": "Entrenamiento de Fuerza y Acondicionamiento",
+        "description": "Mejora de la fuerza, potencia y condición física general.",
+        "focus": "Utilización de pesas, ejercicios pliométricos y funcionales para mejorar el rendimiento físico."
+      },
+      {
+        "imgTrainning": "/src/assets/box.jpg",
+        "type": "Entrenamiento de Velocidad y Agilidad",
+        "description": "Enfoque en mejorar la rapidez de movimientos y la agilidad específica para el boxeo.",
+        "focus": "Ejercicios dinámicos y rápidos para mejorar la velocidad de reacción y la movilidad en el ring."
+      },
+      {
+        "imgTrainning": "/src/assets/box.jpg",
+        "type": "Entrenamiento Mental y Estratégico",
+        "description": "Desarrollo de la concentración, estrategia y preparación mental para competiciones.",
+        "focus": "Técnicas de visualización, control emocional y análisis táctico para optimizar el rendimiento en el ring."
+      }
+    ]
   },
   "price": {
     "title": "Precios",

@@ -4,7 +4,8 @@ import { loginLocal } from "../redux/userLocalActions";
 import LoginButton from "../loginComponent/loginButton/loginButton";
 import { Link } from "react-router-dom";
 
-const LocalLogin = ({ closeModal }) => { // Recibe la función closeModal como prop
+const LocalLogin = ({ closeModal }) => {
+  // Recibe la función closeModal como prop
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -48,7 +49,9 @@ const LocalLogin = ({ closeModal }) => { // Recibe la función closeModal como p
               Iniciar Sesión
             </button>
             <div className="logins">
-              <Link to="/RegistroLocal" onClick={closeModal}>Registrarse</Link> {/* Cierra el modal al hacer clic */}
+              <Link to="/RegistroLocal" onClick={closeModal}>
+                Registrarse
+              </Link>
               <LoginButton />
             </div>
           </div>
