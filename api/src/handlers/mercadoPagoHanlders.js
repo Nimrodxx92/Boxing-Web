@@ -1,6 +1,6 @@
 const mercadoPago = require("../controllers/mercadoPagoController/mercadopago.js");
 const { getPendingOrderByUserEmailController } = require("../controllers/orderController/getPendingOrderByUserEmailController");
-
+const {paymentDataController} = require("../controllers/mercadoPagoController/paymentDataController.js")
 const mercadoPagoHandler = async (req, res) => {
   try {
     const { userEmail } = req.params;
@@ -31,4 +31,30 @@ const mercadoPagoHandler = async (req, res) => {
   }
 };
 
-module.exports = { mercadoPagoHandler };
+
+const paymentDataHandler = async (req, res) => {
+  try {
+    const paymentId = req.params.paymentId; // Extrae el ID de pago de los parámetros de la URL
+    console.log("req.params =>", JSON.stringify(req.params, null, 2));
+
+    if (!paymentId) {
+      return res.status(400).json({ error: 'Falta el ID de pago en la solicitud' });
+    }
+
+    const paymentData = await paymentDataController(paymentId);
+    console.log("paymentData =>", paymentData);
+    res.status(200).json(paymentData); // Enviar la respuesta con los datos de pago
+  } catch (error) {
+    console.error("Error en paymentDataHandler:", error);
+    res.status(400).json({ error: error.message });
+  }
+};
+
+module.exports = { paymentDataHandler };
+
+
+
+
+
+
+module.exports = { mercadoPagoHandler , paymentDataHandler};
