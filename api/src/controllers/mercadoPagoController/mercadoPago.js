@@ -13,11 +13,12 @@ const mercadoPago = (pendingOrderId, itemsBody) => {
     items: itemsBody,
 
     back_urls: {
-      success: "http://localhost:5173/",
-      failure: "http://localhost:5173/",
-      pending: "http://localhost:5173/",
+      success: "http://localhost:5173/orderStatus",
+      failure: "http://localhost:5173/orderStatus",
+      pending: "http://localhost:5173/orderStatus",
     },
     auto_return: "approved",
+    notification_url: "https://a5b5-2800-810-497-27f1-3dfb-bdf7-7dad-c62.ngrok-free.app/order-update"
   };
 
   const preferenceId = mercadopago.preferences
