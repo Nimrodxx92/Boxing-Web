@@ -13,7 +13,7 @@ const OrderStatus = () => {
       // Envía el paymentId al backend
       api.post(`/mercadoPago/order-update/${paymentId}`)
         .then(response => {
-          console.log('Payment Data:', response.data);
+          return response;
         })
         .catch(error => {
           console.error('Error fetching payment data:', error);

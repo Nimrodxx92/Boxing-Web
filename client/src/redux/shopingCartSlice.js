@@ -4,9 +4,25 @@ import api from "../api";
 export const shopingCartSlice = createSlice({
   name: "shopingCart",
   initialState: {
-    pendingOrder: {},
+    pendingOrder: {
+      id: null,
+      total_price: null,
+      payment_date: null,
+      status: null,
+      payment_status_detail: null,
+      payment_id: null,
+      createdAt: null,
+      updatedAt: null,
+      UserId: null,
+      Items: []
+    },
     itemsOrder: [],
     isChecked: false,
+    mercadoPagoPreference: null,
+    payments: {
+      allPayments: [],
+      paymentsDetail: {}
+    }
   },
   reducers: {
     getPendingOrderCase: (state, action) => {
@@ -17,21 +33,28 @@ export const shopingCartSlice = createSlice({
     },
     setItems: (state, action) => {
       const newItem = action.payload;
-      // Check if an item with the same PaymentId already exists in pendingOrder.Items
-      const existingItem = state.pendingOrder.Items.find(
+
+      // Find payment details corresponding to the new item
+      const paymentDetail = state.payments.allPayments.find(
+        (payment) => payment.id === newItem.PaymentId
+      );
+
+      if (!paymentDetail) {
+        console.error("Payment detail not found for item:", newItem);
+        return;
+      }
+
+      // Check if an item with the same PaymentId already exists in itemsOrder
+      const existingItem = state.itemsOrder.find(
         (it) => it.PaymentId === newItem.PaymentId
       );
+
       if (!existingItem) {
         // Add the new item only if it doesn't already exist in the order
-        state.itemsOrder = [...state.itemsOrder, newItem];
-        if (state.pendingOrder.Items) {
-          state.pendingOrder.Items = [...state.pendingOrder.Items, newItem];
-        } else {
-          state.pendingOrder.Items = [newItem];
-        }
+        state.itemsOrder = [...state.itemsOrder, { ...newItem, payments: paymentDetail }];
+        state.pendingOrder.Items = [...state.pendingOrder.Items, { ...newItem, payments: paymentDetail }];
       }
     },
-
     getItems: (state, action) => {
       state.itemsOrder = action.payload;
     },
@@ -46,15 +69,13 @@ export const shopingCartSlice = createSlice({
       const { itemId, quantity, amount } = action.payload;
       state.itemsOrder = state.itemsOrder.map((it) => {
         if (it.id === itemId) {
-          it.quantity = quantity;
-          it.amount = amount;
+          return { ...it, quantity, amount };
         }
         return it;
       });
       state.pendingOrder.Items = state.pendingOrder.Items.map((it) => {
         if (it.id === itemId) {
-          it.quantity = quantity;
-          it.amount = amount;
+          return { ...it, quantity, amount };
         }
         return it;
       });
@@ -62,6 +83,12 @@ export const shopingCartSlice = createSlice({
     setCheckboxState: (state, action) => {
       state.isChecked = action.payload;
     },
+    setMercadoPagoPreference: (state, action) => {
+      state.mercadoPagoPreference = action.payload;
+    },
+    setPayments: (state, action) => {
+      state.payments = action.payload;
+    }
   },
 });
 
@@ -73,65 +100,69 @@ export const {
   putItems,
   deleteItems,
   setCheckboxState,
+  setMercadoPagoPreference,
+  setPayments
 } = shopingCartSlice.actions;
 
 export default shopingCartSlice.reducer;
 
+// Action Creators
 export const getPendingOrderAction = (userId) => async (dispatch) => {
   try {
-    const pendingOrder = await api
-      .get(`/order/${userId}`)
-      .then((r) => r.data[0]);
-    dispatch(getPendingOrderCase(pendingOrder));
+    const response = await api.get(`/order/${userId}`);
+    dispatch(getPendingOrderCase(response.data[0]));
   } catch (error) {
     console.log(error);
   }
 };
 
-export const setItemsActions = ({ Payments, PaymentId, OrderId, final_price, quantity, amount }) => async (dispatch) => {
+export const setItemsActions = (items) => async (dispatch) => {
   try {
-    const item = await api
-      .post("/item", {
-        Payment: Payments,  // Enviar el objeto Payments completo
-        PaymentId: PaymentId,
-        OrderId: OrderId,
-        final_price: final_price,
-        quantity: quantity,
-        amount: amount,
-      })
-      .then((r) => r.data);
-    console.log("respuesta del servidor =>", item);
-    dispatch(setItems({ Payments: Payments, ...item }));
-    console.log("setItemsActions", item);
+    const response = await api.post("/item", items);
+    dispatch(setItems(response.data));
   } catch (error) {
     console.log(error);
   }
 };
 
+export const deleteItemActions = ({ id, OrderId }) => async (dispatch) => {
+  try {
+    await api.delete(`/item/${id}`, { data: { OrderId } });
+    dispatch(deleteItems(id));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const deleteItemActions =
-  ({ id, OrderId }) =>
-  async (dispatch) => {
-    try {
-      await api.delete(`/item/${id}`, { data: { OrderId } });
-      dispatch(deleteItems(id));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+export const putItemActions = ({ orderId, itemId, quantity, amount }) => async (dispatch) => {
+  try {
+    await api.put("/item", { orderId, itemId, quantity, amount });
+    dispatch(putItems({ itemId, quantity, amount }));
+  } catch (error) {
+    console.log(error);
+  }
+};
 
-export const putItemActions =
-  ({ orderId, itemId, quantity, amount }) =>
-  async (dispatch) => {
-    try {
-      await api.put("/item", {
-        orderId,
-        itemId,
-        quantity,
-        amount,
-      });
-      dispatch(putItems({ itemId, quantity, amount }));
-    } catch (error) {
-      console.log(error);
-    }
-  };
+// redux/shopingCartSlice.js
+export const createMercadoPagoPreferenceAction = (userEmail, itemsOrder) => async (dispatch) => {
+  try {
+    const data = itemsOrder.map(item => ({
+      PaymentId: item.PaymentId,
+      OrderId: item.OrderId,
+      final_price: item.final_price,
+      quantity: item.quantity,
+      amount: item.amount,
+      Payment: item.items, 
+      title: item.payments.name
+    }));
+
+    const response = await api.post(`mercadoPago/create-preference/${userEmail}`, data);
+    console.log("respuesta de mercado pago=>", response.data.checkoutUrl);
+
+    dispatch(setMercadoPagoPreference(response.data));
+    return response.data.checkoutUrl; // Asegúrate de retornar la URL
+  } catch (error) {
+    console.error("Error creating MercadoPago preference:", error);
+    throw error; // Lanza el error para manejarlo en el componente
+  }
+};

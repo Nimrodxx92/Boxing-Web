@@ -34,9 +34,9 @@ const getUserOrdersHandler = async (req, res) => {
 
 const putOrderHandler = async (req, res) => {
   try {
-    const { orderId, order_status } = req.body;
+    const { orderId } = req.body;
 
-    await putOrderController({ orderId, order_status });
+    await putOrderController({ orderId });
     res.status(200).send("Orden modificada correctamente.");
   } catch (error) {
     res.status(400).send({ error: error.message });

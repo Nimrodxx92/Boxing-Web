@@ -3,12 +3,10 @@ import { Link } from "react-router-dom";
 
 const ApiCard = () => {
   const allPayments = useSelector((state) => state.payments.allPayments);
-  console.log(allPayments);
-  // Crear un nuevo array con el orden modificado
   const modifiedOrder = [...allPayments];
   if (modifiedOrder.length >= 3) {
-    const lastItem = modifiedOrder.pop(); // Eliminar la última tarjeta
-    modifiedOrder.splice(1, 0, lastItem); // Insertar la última tarjeta en la posición 1
+    const lastItem = modifiedOrder.pop();
+    modifiedOrder.splice(1, 0, lastItem); 
   }
 
   return (

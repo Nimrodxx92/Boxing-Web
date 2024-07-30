@@ -1,7 +1,6 @@
 const { Payments } = require("../../db");
 
 const getPaymentsById = async (paymentsId) => {
-  console.log("Esta es la data => ", paymentsId);
   try {
     const payments = await Payments.findOne({
       where: {

@@ -1,15 +1,13 @@
-const { Item } = require("../../db");
-const { updateCartTotalPrice } = require("./updateCartTotalPrice");
+// In your controller (e.g., itemController.js)
+const { Item, Payments } = require("../../db"); 
 
-const postItemController = async (
-  PaymentId,
-  OrderId,
-  final_price,
-  quantity,
-  amount
-) => {
+const postItemController = async (PaymentId, OrderId, final_price, quantity, amount) => {
   try {
-    // Verificar si ya existe un ítem con el mismo precio en la orden
+    const paymentExists = await Payments.findByPk(PaymentId);
+    if (!paymentExists) {
+      throw new Error(`Payment with id ${PaymentId} does not exist`);
+    }
+
     const existingItem = await Item.findOne({
       where: {
         OrderId,
@@ -18,12 +16,9 @@ const postItemController = async (
     });
 
     if (existingItem) {
-      // Si existe un ítem con el mismo precio, no crear un nuevo ítem
-      console.log("Ya existe un ítem con el mismo precio en la orden");
       return existingItem;
     }
 
-    // Crear el nuevo artículo y asociarlo al carrito
     const newItem = await Item.create({
       PaymentId,
       OrderId,
@@ -32,11 +27,10 @@ const postItemController = async (
       amount,
     });
 
-    await updateCartTotalPrice(OrderId);
-
     return newItem;
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    throw error;
   }
 };
 

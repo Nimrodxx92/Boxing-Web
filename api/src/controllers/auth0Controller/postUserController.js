@@ -3,7 +3,6 @@ const { tokenSign } = require("../../utils/handleJsonWebToken");
 
 const postUserController = async (name, email, type, status) => {
   let newUser = {};
-  console.log(newUser);
   if (
     email === "silviojuarez60@gmail.com" ||
     email === "cnmonsalvo@gmail.com"

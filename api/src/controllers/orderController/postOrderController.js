@@ -9,7 +9,6 @@ const postOrderController = async (email) => {
       where: { email },
     });
     const userId = userByEmail.dataValues.id;
-    console.log(userId);
     let userOrder = await Order.findOne({
       where: {
         UserId: userId,
@@ -38,8 +37,8 @@ const postOrderController = async (email) => {
     }
     return userOrder;
   } catch (error) {
-    console.log(error);
-  }
+      throw error  
+}
 };
 
 module.exports = { postOrderController };

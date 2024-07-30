@@ -1,30 +1,34 @@
 const mercadoPago = require("../controllers/mercadoPagoController/mercadopago.js");
 const { getPendingOrderByUserEmailController } = require("../controllers/orderController/getPendingOrderByUserEmailController");
 const {paymentDataController} = require("../controllers/mercadoPagoController/paymentDataController.js")
+
 const mercadoPagoHandler = async (req, res) => {
   try {
     const { userEmail } = req.params;
-    console.log("req.body=>", JSON.stringify(req.body, null, 2));
 
-    const itemsBody = req.body.map((item, index) => {
-      if (item.Payment && item.Payment.name) {
-        return {
-          title: item.Payment.name,
-          unit_price: item.final_price,
-          quantity: item.quantity,
-        };
-      } else {
-        throw new Error(`Faltan datos de pago para el item ${index}`);
-      }
-    });
+    if (!Array.isArray(req.body) || req.body.length === 0) {
+      throw new Error("No se proporcionaron ítems de pago");
+    }
 
+    
+    const itemsBody = req.body.map((item) => ({
+      id: item.PaymentId,
+      title: item.title, 
+      quantity: item.quantity,
+      unit_price: item.final_price
+    }));
+    
     const pendingOrderId = await getPendingOrderByUserEmailController(userEmail);
+    if (!pendingOrderId) {
+      throw new Error("No se encontró una orden pendiente para el usuario");
+    }
+
     const preference = await mercadoPago(pendingOrderId, itemsBody);
+    if (!preference || !preference.init_point) {
+      throw new Error("No se pudo obtener la URL de checkout");
+    }
 
-    // Asume que `mercadoPago` devuelve un objeto `preference` que incluye la URL de checkout
-    const checkoutUrl = preference.init_point;
-
-    res.status(200).json({ checkoutUrl });
+    res.status(200).json({ checkoutUrl: preference.init_point });
   } catch (error) {
     console.error("Error en mercadoPagoHandler:", error);
     res.status(400).send({ error: error.message });
@@ -32,18 +36,17 @@ const mercadoPagoHandler = async (req, res) => {
 };
 
 
+
 const paymentDataHandler = async (req, res) => {
   try {
-    const paymentId = req.params.paymentId; // Extrae el ID de pago de los parámetros de la URL
-    console.log("req.params =>", JSON.stringify(req.params, null, 2));
+    const paymentId = req.params.paymentId; 
 
     if (!paymentId) {
       return res.status(400).json({ error: 'Falta el ID de pago en la solicitud' });
     }
 
     const paymentData = await paymentDataController(paymentId);
-    console.log("paymentData =>", paymentData);
-    res.status(200).json(paymentData); // Enviar la respuesta con los datos de pago
+    res.status(200).json(paymentData); 
   } catch (error) {
     console.error("Error en paymentDataHandler:", error);
     res.status(400).json({ error: error.message });

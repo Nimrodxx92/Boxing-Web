@@ -28,17 +28,15 @@ const Home = () => {
   const emailLocalUser = useSelector(
     (state) => state.user && state.user.user && state.user.user.email
   );
-  console.log(emailLocalUser);
 
   useEffect(() => {
     if (isLocalAuthenticated && !allItems.length && emailLocalUser) {
       api
         .post("/order", { email: emailLocalUser })
         .then((response) => {
-          console.log(response.data);
-        })
+          return response        })
         .catch((error) => {
-          console.log(error);
+          throw error
         });
     }
   });

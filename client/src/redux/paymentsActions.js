@@ -4,11 +4,10 @@ import { getAllPayments, getPaymentsDetail } from "./paymentsSlice";
 export const getPayments = () => async (dispatch) => {
   try {
     const response = await api.get("/payments");
-    console.log(response);
     const allPayments = response.data;
     dispatch(getAllPayments(allPayments));
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 };
 

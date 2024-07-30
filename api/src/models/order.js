@@ -12,7 +12,7 @@ module.exports = (sequelize) => {
       allowNull: true,
     },
     payment_date: {
-      type: DataTypes.DATE,
+      type: DataTypes.DATE, // O DataTypes.DATEONLY si solo necesitas la fecha
       allowNull: true,
     },
     status: {
@@ -27,9 +27,6 @@ module.exports = (sequelize) => {
       type: DataTypes.INTEGER,
       allowNull: true,
     },
-    order_status: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
+    
   });
 };

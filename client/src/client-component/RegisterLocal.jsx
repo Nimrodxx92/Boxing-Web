@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { registerUser } from "../redux/userLocalActions";
-import Home from "../client-views/home"; // Importa el componente Home
+import Home from "../client-views/home"; 
 
 const RegisterLocal = () => {
   const [userData, setUserData] = useState({
@@ -14,7 +14,6 @@ const RegisterLocal = () => {
   const [registered, setRegistered] = useState(false);
   const [registrationError, setRegistrationError] = useState(false);
 
-  // Selecciona los errores del estado de Redux y proporciona un valor predeterminado vacío si es null o undefined
   const errors = useSelector((state) => state.user.error) || [];
 
   const handleRegistration = async () => {
@@ -34,8 +33,6 @@ const RegisterLocal = () => {
           )
         );
   
-        // Verifica la estructura de la respuesta para asegurarte de acceder correctamente a los datos
-        console.log(response.status);
   
         if (response.status === 201) {
           setRegistered(true);

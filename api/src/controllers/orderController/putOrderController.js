@@ -1,13 +1,12 @@
-const { or, where } = require("sequelize");
 const { Order } = require("../../db");
 
 const putOrderController = async ({
   orderId,
-  order_status,
   status,
   payment_date,
   payment_id,
   payment_status_detail,
+  total_price,
 }) => {
   try {
     if (orderId) {
@@ -17,37 +16,29 @@ const putOrderController = async ({
         },
       });
 
-      if (
-        orderToBeModified &&
-        order_status &&
-        !status &&
-        !payment_status_detail &&
-        !payment_date &&
-        !payment_id
-      ) {
-        await Order.update(
-          { order_status },
-          {
-            where: {
-              id: orderToBeModified.dataValues.id,
-            },
-          }
-        );
+      if (!orderToBeModified) {
+        throw new Error(`Order with ID ${orderId} not found`);
       }
-      if (orderToBeModified && !order_status && status) {
-        await Order.update(
-          { status, payment_status_detail, payment_id, payment_date },
-          {
-            where: {
-              id: orderToBeModified.dataValues.id,
-            },
-          }
-        );
-      }
+
+      const updateData = {};
+
+      if (status) updateData.status = status;
+      if (payment_date) updateData.payment_date = payment_date;
+      if (payment_id) updateData.payment_id = payment_id;
+      if (payment_status_detail) updateData.payment_status_detail = payment_status_detail;
+      if (total_price) updateData.total_price = total_price;
+
+      await Order.update(updateData, {
+        where: {
+          id: orderToBeModified.dataValues.id,
+        },
+      });
+
       return "Order actualizada correctamente";
     }
   } catch (error) {
-    console.log(error);
+    console.error("Error en putOrderController:", error.message);
+    throw error;
   }
 };
 

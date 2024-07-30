@@ -1,7 +1,6 @@
 const checkRol = (allowedRoles) => (req, res, next) => {
   try {
     const { user } = req;
-    console.log({ user });
     if (!user) {
       return res.status(403).send("USER_NOT_FOUND");
     }

@@ -2,7 +2,6 @@ const registerLocalController = require("../controllers/registerLocalController/
 
 const registerLocalHandler = async (req, res) => {
   const { name, surname, email, status, password: plainPassword } = req.body;
-  console.log(req.body);
   try {
     const data = await registerLocalController(
       name,
