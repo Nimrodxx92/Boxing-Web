@@ -14,7 +14,7 @@ orderRouter.post(
   checkRol(["Admin", "Client"]),
   postOrderHandler
 );
-orderRouter.put("/", authMiddleware, checkRol(["Admin"]), putOrderHandler);
+orderRouter.put("/", authMiddleware, checkRol(["Client"]), putOrderHandler);
 orderRouter.get(
   "/:userId",
   authMiddleware,

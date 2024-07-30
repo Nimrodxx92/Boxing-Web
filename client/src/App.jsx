@@ -20,7 +20,6 @@ function App() {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    console.log("log de token => ", token);
     if (token) {
       dispatch(setToken(token));
     }
