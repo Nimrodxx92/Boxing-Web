@@ -10,9 +10,12 @@ import Modal from "./Modal";
 import LocalLogin from "../client-component/LocalLogin";
 
 function NavBar() {
-  const { isAuthenticated: isAuthenticatedAuth0, logout: logoutAuth0 } = useAuth0();
+  const { isAuthenticated: isAuthenticatedAuth0, logout: logoutAuth0 } =
+    useAuth0();
 
-  const isAuthenticatedRedux = useSelector((state) => state.user.isAuthenticated);
+  const isAuthenticatedRedux = useSelector(
+    (state) => state.user.isAuthenticated
+  );
   const dispatch = useDispatch();
 
   const isAuthenticated = isAuthenticatedAuth0 || isAuthenticatedRedux;

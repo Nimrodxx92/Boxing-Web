@@ -1,29 +1,48 @@
 .trainning__container {
+  max-width: 1800px;
   background-color: black;
-  padding: 5vw;
-  .training-grid {
+  .trainning-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
-    text-align: center;
-    .training-item {
-      padding: 2px;
-      border: 1px solid #ccc;
-      background-color: #c7c5c5;
+    padding: 4vw;
+    .trainning-item {
+      padding: 10px;
+      border: 1px solid #c5c3c3;
+      background-color: #000000;
       font-family: "Poppins", sans-serif;
-      h3 {
-        margin-bottom: 1vw;
-        color: rgb(31, 30, 30);
-      }
       img {
         width: 100%;
       }
-      div {
-        padding: 0.7vw;
+      .data-trainning {
+        padding: 1vw;
+        display: flex;
+        flex-direction: column;
+        h3 {
+          color: #c5c3c3;
+          margin-bottom: 2vw;
+        }
         p {
-          color: rgb(41, 41, 41);
+          color: rgb(156, 156, 156);
         }
       }
+    }
+  }
+  .container__tabla {
+    margin-top: -3.5vw;
+    padding: 2vw;
+    color: $colorTextOne;
+    h2 {
+      text-align: center;
+      font-family: "Teko", sans-serif;
+      text-transform: uppercase;
+      font-size: 2.8vw;
+      font-weight: 600;
+    }
+    .linea-div {
+      border-top: 0.3vw solid $colorMain;
+      margin: 0.1vw 44vw;
+      margin-bottom: 2vw;
     }
   }
 }
