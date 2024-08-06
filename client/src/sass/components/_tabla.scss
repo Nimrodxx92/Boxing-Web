@@ -1,0 +1,28 @@
+.tabla-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .tabla-horarios {
+    border-collapse: collapse;
+    width: 70%;
+    text-align: center;
+    th,
+    td {
+      border: 1px solid #ffffff;
+      padding: 1.1vw;
+    }
+    th {
+      background-color: #111111;
+      font-family: "Teko", sans-serif;
+      font-size: 1.5vw;
+      font-weight: 500;
+    }
+    td {
+      font-family: "Poppins", sans-serif;
+    }
+  }
+  .title-horario {
+    background-color: $colorMain;
+    font-family: "Poppins", sans-serif;
+  }
+}

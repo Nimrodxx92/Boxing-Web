@@ -1,12 +1,13 @@
 .about__container {
+  max-width: 1800px;
   background-color: black;
-  padding: 7vw;
   .firts__about {
+    padding: 7vw;
     display: flex;
     img {
       width: 40%;
     }
-    .title-firts-about {
+    .data-firts-seccion {
       padding: 2vw;
       margin-left: 5vw;
       width: 50%;
@@ -21,42 +22,70 @@
         color: gray;
         font-size: 1.1vw;
       }
-    }
-    .skills-entrenamiento {
-      color: white;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 30px;
-      margin-top: 2.5vw;
-      h3 {
-        font-family: "Teko", sans-serif;
-        font-size: 1.8vw;
+      .skills-entrenamiento {
+        color: white;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+        margin-top: 2.5vw;
+        h3 {
+          font-family: "Teko", sans-serif;
+          font-size: 1.8vw;
+        }
       }
     }
   }
-}
-
-.subabout_container {
-  background-color: black;
-  font-family: "Poppins", sans-serif;
-  font-size: 1.2vw;
-  font-weight: 400;
-  .sub-img-about {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    gap: 5vw;
-    .text-about {
-      width: 50%;
+  .subabout__container {
+    background-color: rgb(8, 8, 8);
+    font-family: "Poppins", sans-serif;
+    font-size: 1.2vw;
+    font-weight: 400;
+    padding: 2vw;
+    .sub-img-about {
       display: flex;
+      text-align: center;
       justify-content: center;
-      flex-direction: column;
-      gap: 4vw;
-      color: gray;
-      background-color: black;
+      gap: 5vw;
+      .text-about {
+        width: 50%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        gap: 4vw;
+        color: gray;
+      }
     }
     img {
       width: 30%;
+    }
+  }
+  .data__profesor {
+    padding: 2vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      width: 30%;
+      padding: 8px;
+      border: 1px solid white;
+    }
+    .info-profesor {
+      position: relative;
+      background-color: $colorMain;
+      height: 80px;
+      width: 250px;
+      margin-top: -40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      h3 {
+        color: white;
+        font-family: "Teko", sans-serif;
+        font-size: 2.5vw;
+        font-weight: 500;
+        text-transform: uppercase;
+      }
     }
   }
 }

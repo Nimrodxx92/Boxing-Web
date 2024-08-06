@@ -1,7 +1,8 @@
 import aboutImg from "../assets/0000.jpg";
 import boxerAbout from "../assets/boxer-about.jpg";
+import imgAbout2 from "../assets/brutal-boxeador-musculoso-guantes-boxeo-trabajando-tecnica-perforacion.jpg";
 import TitleComponent from "../components/TitleComponent";
-import data from "../json/titles.json";
+import data from "../json/about.json";
 
 const About = () => {
   const skills = data.about.clubInfo.skills;
@@ -11,10 +12,10 @@ const About = () => {
         title={data.about.title}
         description={data.about.description}
       />
-      <section className="about__container">
-        <div className="firts__about">
+      <main className="about__container">
+        <section className="firts__about">
           <img src={aboutImg} alt="img" />
-          <div className="title-firts-about">
+          <div className="data-firts-seccion">
             <h2>{data.about.clubInfo.title}</h2>
             <p>{data.about.clubInfo.description}</p>
             <div className="skills-entrenamiento">
@@ -26,17 +27,23 @@ const About = () => {
               ))}
             </div>
           </div>
-        </div>
-      </section>
-      <section className="subabout_container">
-        <div className="sub-img-about">
-          <div className="text-about">
-            <p>{data.about.mision}</p>
-            <p>{data.about.vision}</p>
+        </section>
+        <section className="subabout__container">
+          <div className="sub-img-about">
+            <div className="text-about">
+              <p>{data.about.mision}</p>
+              <p>{data.about.vision}</p>
+            </div>
+            <img src={boxerAbout} alt="" />
           </div>
-          <img src={boxerAbout} alt="" />
-        </div>
-      </section>
+        </section>
+        <section className="data__profesor">
+          <img src={imgAbout2} alt="" />
+          <div className="info-profesor">
+            <h3>Diego Noriega</h3>
+          </div>
+        </section>
+      </main>
     </>
   );
 };

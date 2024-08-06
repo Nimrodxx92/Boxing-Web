@@ -39,8 +39,6 @@ function App() {
           <Route path="/RegistroLocal" element={<RegisterLocal />} />
           <Route path="/LocalLogin" element={<LocalLogin />} />
           <Route path="/orderStatus" element={<OrderStatus />} />
-
-
         </Routes>
         <Footer />
       </BrowserRouter>
