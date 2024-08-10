@@ -7,7 +7,8 @@ const postUserHandler = async (req, res) => {
     res.status(200).send(newUser);
   } catch (error) {
     res.status(400).send({ error: error.message });
-    throw error  }
+    throw error;
+  }
 };
 
 module.exports = { postUserHandler };

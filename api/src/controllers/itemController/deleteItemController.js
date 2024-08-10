@@ -11,7 +11,7 @@ const deleteItemController = async (id, OrderId) => {
 
     await updateCartTotalPrice(OrderId);
   } catch (error) {
-    throw new error
+    throw new error();
   }
 };
 

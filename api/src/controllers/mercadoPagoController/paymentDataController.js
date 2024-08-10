@@ -1,14 +1,14 @@
-const axios = require('axios');
-require('dotenv').config();
+const axios = require("axios");
+require("dotenv").config();
 const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
-const { putOrderController } = require('../orderController/putOrderController');
+const { putOrderController } = require("../orderController/putOrderController");
 
 const formatDate = (isoDate) => {
   if (!isoDate) return null;
-  
+
   const date = new Date(isoDate);
   if (isNaN(date.getTime())) return null;
-  
+
   return date.toISOString(); // Devuelve en formato ISO 8601
 };
 
@@ -60,6 +60,5 @@ const paymentDataController = async (paymentId) => {
     throw new Error("Error al obtener los datos del pago");
   }
 };
-
 
 module.exports = { paymentDataController };

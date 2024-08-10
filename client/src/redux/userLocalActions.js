@@ -16,16 +16,13 @@ export const registerUser =
         email,
         password,
       });
-
       dispatch(registerUserSuccess(response.data.data.user));
       dispatch(setToken(response.data.data.token));
       localStorage.setItem("token", response.data.data.token);
-
-      // Asegúrate de retornar la respuesta para que esté disponible en handleRegistration
       return response;
     } catch (error) {
       dispatch(registerUserFailure(error.response.data.errors));
-      throw error; // Lanza el error para manejarlo en handleRegistration
+      throw error; 
     }
 };
 

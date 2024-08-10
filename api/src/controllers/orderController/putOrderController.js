@@ -25,7 +25,8 @@ const putOrderController = async ({
       if (status) updateData.status = status;
       if (payment_date) updateData.payment_date = payment_date;
       if (payment_id) updateData.payment_id = payment_id;
-      if (payment_status_detail) updateData.payment_status_detail = payment_status_detail;
+      if (payment_status_detail)
+        updateData.payment_status_detail = payment_status_detail;
       if (total_price) updateData.total_price = total_price;
 
       await Order.update(updateData, {

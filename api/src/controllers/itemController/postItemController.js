@@ -1,7 +1,13 @@
 // In your controller (e.g., itemController.js)
-const { Item, Payments } = require("../../db"); 
+const { Item, Payments } = require("../../db");
 
-const postItemController = async (PaymentId, OrderId, final_price, quantity, amount) => {
+const postItemController = async (
+  PaymentId,
+  OrderId,
+  final_price,
+  quantity,
+  amount
+) => {
   try {
     const paymentExists = await Payments.findByPk(PaymentId);
     if (!paymentExists) {

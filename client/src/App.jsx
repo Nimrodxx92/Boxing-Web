@@ -14,6 +14,7 @@ import DetailPayments from "./client-views/detailPayments/detailPayments";
 import RegisterLocal from "./client-component/RegisterLocal";
 import LocalLogin from "./client-component/LocalLogin";
 import OrderStatus from "./client-views/orderStatus";
+import AdminDashboard from "./admin-views/adminDashboard";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +40,7 @@ function App() {
           <Route path="/RegistroLocal" element={<RegisterLocal />} />
           <Route path="/LocalLogin" element={<LocalLogin />} />
           <Route path="/orderStatus" element={<OrderStatus />} />
+          <Route path="/adminDashboard" element={<AdminDashboard />} />
         </Routes>
         <Footer />
       </BrowserRouter>
