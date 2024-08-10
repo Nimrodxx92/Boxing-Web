@@ -3,7 +3,7 @@ const { tokenSign } = require("../../utils/handleJsonWebToken");
 const { encrypt } = require("../../utils/handlePassword");
 
 const adminEmails = ["silviojuarez60@gmail.com", "cnmonsalvo@gmail.com"];
-const MAX_USERS = 100; 
+const MAX_USERS = 100;
 
 const registerLocalController = async (
   name,

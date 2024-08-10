@@ -1,5 +1,8 @@
 const getUserController = require("../controllers/adminControllers/getUserController");
 const getAllPaymentsController = require("../controllers/adminControllers/getAllPaymentsControllers");
+const putPaymentController = require("../controllers/adminControllers/putPaymentController");
+const getPaymentsCountByDay = require("../controllers/adminControllers/getPaymentsCountByDay");
+const deleteUserController = require("../controllers/adminControllers/deleteUserController");
 
 const getUserHandler = async (req, res) => {
   try {
@@ -19,4 +22,41 @@ const getAllPaymentsHandlers = async (req, res) => {
   }
 };
 
-module.exports = { getUserHandler, getAllPaymentsHandlers };
+const putPaymentHandler = (req, res) => {
+  try {
+    const data = putPaymentController();
+    res.status(200).send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
+};
+
+const getPaymentCountHanlder = (req, res) => {
+  try {
+    const data = getPaymentsCountByDay();
+    res.status(200).send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
+};
+
+const deleteUserHanlder = (req, res) => {
+  try {
+    const userId = req.params.id;
+    const data = deleteUserController(userId);
+    res.status(200).send(data);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send({ error: error.message });
+  }
+};
+
+module.exports = {
+  getUserHandler,
+  getAllPaymentsHandlers,
+  putPaymentHandler,
+  getPaymentCountHanlder,
+  deleteUserHanlder,
+};

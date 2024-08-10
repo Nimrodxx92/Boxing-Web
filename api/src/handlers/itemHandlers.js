@@ -11,13 +11,18 @@ const {
 const postItemHandler = async (req, res) => {
   try {
     const { PaymentId, OrderId, final_price, quantity, amount } = req.body;
-    const newItem = await postItemController(PaymentId, OrderId, final_price, quantity, amount);
+    const newItem = await postItemController(
+      PaymentId,
+      OrderId,
+      final_price,
+      quantity,
+      amount
+    );
     res.status(201).json(newItem);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 };
-
 
 const deleteItemHandler = async (req, res) => {
   try {

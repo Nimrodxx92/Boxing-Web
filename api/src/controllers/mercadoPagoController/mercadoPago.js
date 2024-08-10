@@ -4,7 +4,7 @@ const ACCESS_TOKEN = process.env.ACCESS_TOKEN;
 
 mercadopago.configure({
   access_token: ACCESS_TOKEN,
-  sandbox:true,
+  sandbox: true,
 });
 
 const mercadoPago = (pendingOrderId, itemsBody) => {
@@ -23,7 +23,7 @@ const mercadoPago = (pendingOrderId, itemsBody) => {
   const preferenceId = mercadopago.preferences
     .create(preference)
     .then(function (response) {
-      return response.body
+      return response.body;
     })
     .catch(function (error) {
       throw error;

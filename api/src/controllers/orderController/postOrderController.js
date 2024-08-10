@@ -37,8 +37,8 @@ const postOrderController = async (email) => {
     }
     return userOrder;
   } catch (error) {
-      throw error  
-}
+    throw error;
+  }
 };
 
 module.exports = { postOrderController };
