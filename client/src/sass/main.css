@@ -493,13 +493,24 @@ button {
 
 .footer {
   background-color: #0c0c0c;
-  padding: 1.8vw 6vw;
+  padding: 50px;
   font-family: "Poppins", sans-serif;
+}
+@media (max-width: 700px) {
+  .footer {
+    padding: 30px;
+  }
 }
 .footer .container__footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+@media (max-width: 700px) {
+  .footer .container__footer {
+    flex-direction: column;
+    gap: 24px;
+  }
 }
 .footer .container__footer .data__footer {
   display: flex;
@@ -508,19 +519,35 @@ button {
 }
 .footer .container__footer .data__footer h4 {
   font-family: "Teko", sans-serif;
-  font-size: 2vw;
+  font-size: 24px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
+@media (max-width: 700px) {
+  .footer .container__footer .data__footer h4 {
+    font-size: 20px;
+  }
+}
 .footer .container__footer .data__footer p {
   color: rgba(255, 255, 255, 0.4);
-  font-size: 1.2vw;
-  line-height: 1.8vw;
+  font-size: 16px;
+  line-height: 24px;
+}
+@media (max-width: 700px) {
+  .footer .container__footer .data__footer p {
+    font-size: 14px;
+    line-height: 24px;
+  }
 }
 .footer .container__footer .data__footer .phone {
   color: #da1d25;
-  font-size: 1.7vw;
+  font-size: 20px;
+}
+@media (max-width: 700px) {
+  .footer .container__footer .data__footer .phone {
+    font-size: 14px;
+  }
 }
 .footer .container__footer .nav__footer {
   display: flex;
@@ -529,7 +556,12 @@ button {
 .footer .container__footer .nav__footer .footer__links {
   display: flex;
   flex-direction: column;
-  gap: 0.5vw;
+  gap: 10px;
+}
+@media (max-width: 700px) {
+  .footer .container__footer .nav__footer .footer__links {
+    align-items: center;
+  }
 }
 .footer .container__footer .nav__footer .footer__links .links__footer {
   text-decoration: none;
@@ -538,6 +570,11 @@ button {
 }
 .footer .container__footer .nav__footer .footer__links .links__footer:hover {
   color: #da1d25;
+}
+@media (max-width: 700px) {
+  .footer .container__footer .nav__footer .footer__links .links__footer {
+    font-size: 14px;
+  }
 }
 .footer .container__footer .redes__footer {
   display: flex;
@@ -551,6 +588,12 @@ button {
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
+@media (max-width: 700px) {
+  .footer .container__footer .redes__footer h4 {
+    font-size: 20px;
+    text-align: center;
+  }
+}
 .footer .container__footer .redes__footer .icons__redes {
   text-align: center;
   color: #da1d25;
@@ -563,6 +606,12 @@ button {
 .footer .container__footer .redes__footer .icons__redes a:hover {
   color: #da1d25;
 }
+@media (max-width: 700px) {
+  .footer .container__footer .redes__footer .icons__redes a {
+    font-size: 20px;
+    margin: 15px;
+  }
+}
 .footer .separador {
   border-top: 0.1vw solid rgb(139, 139, 139);
   margin-top: 2vw;
@@ -572,6 +621,11 @@ button {
   text-align: center;
   font-size: 1.1vw;
   margin-top: 1.5vw;
+}
+@media (max-width: 600px) {
+  .footer .copy__name {
+    font-size: 14px;
+  }
 }
 .footer .copy__name span {
   color: #da1d25;
@@ -894,34 +948,26 @@ button {
 .borderlogins .forms .btn-login {
   margin-top: 2vw;
 }
-.borderlogins .logins {
+
+.logins {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   padding: 2vw;
   gap: 0.5vw;
 }
-.borderlogins .logins a {
+.logins button {
+  margin: 0 auto;
+}
+.logins a {
   background-color: #da1d25;
   color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   width: 13.5vw;
   height: 45px;
 }
-.borderlogins .logins p {
+.logins p {
   color: white;
-}
-
-.login {
-  margin: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  width: 13.5vw;
-  height: 45px;
 }
 
 .container__register {
@@ -995,23 +1041,31 @@ button:hover {
 }
 
 .modal {
-  background-color: white;
+  background-color: #888;
   width: 100%;
   max-width: 600px;
-  padding: 5px;
+  padding: 4px;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 
 .btn-close {
   position: absolute;
-  top: 17%;
-  right: 27%;
+  top: -10px;
+  right: -2px;
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   color: #888;
+}
+.btn-close:hover {
+  background-color: transparent;
+}
+
+.modal__content {
+  overflow: auto;
 }
 
 .trainning__container {
@@ -1089,5 +1143,82 @@ button:hover {
 }
 .tabla-container .title-horario {
   background-color: #da1d25;
+  font-family: "Poppins", sans-serif;
+}
+
+.contact__container {
+  max-width: 1800px;
+}
+.contact__container .contact__inputs {
+  background-color: black;
+  margin: 0 auto;
+  padding: 2vw 15vw;
+}
+.contact__container .contact__inputs .contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1vw;
+}
+.contact__container .contact__inputs .contact-form .form-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1vw;
+}
+.contact__container .contact__inputs .contact-form .form-row .form-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.contact__container .contact__inputs .contact-form .form-row .form-group label {
+  color: #888787;
+  margin-bottom: 5px;
+  font-family: "Teko", sans-serif;
+  font-size: 1.7vw;
+}
+.contact__container .contact__inputs .contact-form .form-row .form-group input,
+.contact__container .contact__inputs .contact-form .form-row .form-group textarea {
+  padding: 8px;
+  box-sizing: border-box;
+  background-color: #383737;
+  border: none;
+  color: #888787;
+  font-size: 1.2vw;
+  width: 100%;
+}
+.contact__container .contact__inputs .contact-form .form-row .form-group textarea {
+  min-height: 200px;
+  font-size: 1.3vw;
+}
+.contact__container .contact__inputs .contact-form button {
+  align-self: flex-start;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 1vw;
+}
+.contact__container .contact__datos {
+  display: flex;
+  justify-content: center;
+  background-color: black;
+  padding: 2vw;
+  gap: 3vw;
+}
+.contact__container .contact__datos iframe {
+  width: 600px;
+  height: 400px;
+}
+.contact__container .contact__datos .container-datos {
+  display: flex;
+  flex-direction: column;
+  gap: 2vw;
+}
+.contact__container .contact__datos .container-datos h3 {
+  color: #888787;
+  font-family: "Teko", sans-serif;
+  font-size: 1.7vw;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+.contact__container .contact__datos .container-datos p {
+  color: #888787;
   font-family: "Poppins", sans-serif;
 }/*# sourceMappingURL=main.css.map */

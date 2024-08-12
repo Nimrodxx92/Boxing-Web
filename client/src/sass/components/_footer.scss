@@ -1,30 +1,47 @@
 .footer {
   background-color: $colorBgFooter;
-  padding: 1.8vw 6vw;
+  padding: 50px;
   font-family: "Poppins", sans-serif;
+  @media (max-width: 700px) {
+    padding: 30px;
+  }
   .container__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media (max-width: 700px) {
+      flex-direction: column;
+      gap: 24px;
+    }
     .data__footer {
       display: flex;
       flex-direction: column;
       align-items: center;
       h4 {
         font-family: "Teko", sans-serif;
-        font-size: 2vw;
+        font-size: 24px;
         font-weight: 500;
         color: $colorTitleFooter;
         text-transform: uppercase;
+        @media (max-width: 700px) {
+          font-size: 20px;
+        }
       }
       p {
         color: $colorTextFooter;
-        font-size: 1.2vw;
-        line-height: 1.8vw;
+        font-size: 16px;
+        line-height: 24px;
+        @media (max-width: 700px) {
+          font-size: 14px;
+          line-height: 24px;
+        }
       }
       .phone {
         color: $colorMain;
-        font-size: 1.7vw;
+        font-size: 20px;
+        @media (max-width: 700px) {
+          font-size: 14px;
+        }
       }
     }
     .nav__footer {
@@ -33,13 +50,19 @@
       .footer__links {
         display: flex;
         flex-direction: column;
-        gap: 0.5vw;
+        gap: 10px;
+        @media (max-width: 700px) {
+          align-items: center;
+        }
         .links__footer {
           text-decoration: none;
           font-size: 1.2vw;
           color: $colorTitleFooter;
           &:hover {
             color: $colorMain;
+          }
+          @media (max-width: 700px) {
+            font-size: 14px;
           }
         }
       }
@@ -54,6 +77,10 @@
         font-weight: 500;
         color: $colorTitleFooter;
         text-transform: uppercase;
+        @media (max-width: 700px) {
+          font-size: 20px;
+          text-align: center;
+        }
       }
       .icons__redes {
         text-align: center;
@@ -64,6 +91,10 @@
           font-size: 1.8vw;
           &:hover {
             color: $colorMain;
+          }
+          @media (max-width: 700px) {
+            font-size: 20px;
+            margin: 15px;
           }
         }
       }
@@ -78,6 +109,9 @@
     text-align: center;
     font-size: 1.1vw;
     margin-top: 1.5vw;
+    @media (max-width: 600px) {
+      font-size: 14px;
+    }
     span {
       color: $colorMain;
     }

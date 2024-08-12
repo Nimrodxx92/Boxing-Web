@@ -45,16 +45,16 @@ const LocalLogin = ({ closeModal }) => {
                 setUserData({ ...userData, password: e.target.value })
               }
             />
-            <button className="btn-login" type="button" onClick={handleLogin}>
-              Iniciar Sesión
-            </button>
-            <div className="logins">
-              <Link to="/RegistroLocal" onClick={closeModal}>
-                Registrarse
-              </Link>
-              <LoginButton />
-            </div>
           </div>
+        </div>
+        <div className="logins">
+          <button className="btn-login" type="button" onClick={handleLogin}>
+            Iniciar Sesión
+          </button>
+          <Link to="/RegistroLocal" onClick={closeModal}>
+            Registrarse
+          </Link>
+          <LoginButton />
         </div>
       </form>
     </>
