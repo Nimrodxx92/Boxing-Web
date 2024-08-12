@@ -9,7 +9,7 @@ const formatDate = (isoDate) => {
   const date = new Date(isoDate);
   if (isNaN(date.getTime())) return null;
 
-  return date.toISOString(); // Devuelve en formato ISO 8601
+  return date.toISOString();
 };
 
 const paymentDataController = async (paymentId) => {

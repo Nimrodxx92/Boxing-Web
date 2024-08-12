@@ -5,14 +5,13 @@ const getPaymentsCountByDay = async () => {
   try {
     const paymentsByDay = await Order.findAll({
       attributes: [
-        [Sequelize.fn("DATE", Sequelize.col("payment_date")), "date"], // Agrupar por la fecha
-        [Sequelize.fn("COUNT", Sequelize.col("id")), "count"], // Contar las órdenes por fecha
+        [Sequelize.fn("DATE", Sequelize.col("payment_date")), "date"],
+        [Sequelize.fn("COUNT", Sequelize.col("id")), "count"],
       ],
-      group: ["date"], // Agrupando por la fecha extraída
-      order: [[Sequelize.col("date"), "ASC"]], // Ordenar por fecha ascendente
+      group: ["date"],
+      order: [[Sequelize.col("date"), "ASC"]],
     });
 
-    // Mapear los resultados a un formato más simple
     const result = paymentsByDay.map((payment) => ({
       date: payment.getDataValue("date"),
       count: payment.getDataValue("count"),
