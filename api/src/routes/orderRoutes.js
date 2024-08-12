@@ -8,17 +8,12 @@ const {
   getUserOrdersHandler,
 } = require("../handlers/orderHandlers");
 
-orderRouter.post(
-  "/",
-  authMiddleware,
-  checkRol(["Admin", "Client"]),
-  postOrderHandler
-);
+orderRouter.post("/", authMiddleware, checkRol(["Client"]), postOrderHandler);
 orderRouter.put("/", authMiddleware, checkRol(["Client"]), putOrderHandler);
 orderRouter.get(
   "/:userId",
   authMiddleware,
-  checkRol(["Admin", "Client"]),
+  checkRol(["Client"]),
   getUserOrdersHandler
 );
 

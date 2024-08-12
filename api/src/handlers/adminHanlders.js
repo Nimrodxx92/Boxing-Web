@@ -3,6 +3,7 @@ const getAllPaymentsController = require("../controllers/adminControllers/getAll
 const putPaymentController = require("../controllers/adminControllers/putPaymentController");
 const getPaymentsCountByDay = require("../controllers/adminControllers/getPaymentsCountByDay");
 const deleteUserController = require("../controllers/adminControllers/deleteUserController");
+const getDashboardSummaryController = require("../controllers/adminControllers/getDashboardSummaryController");
 
 const getUserHandler = async (req, res) => {
   try {
@@ -22,10 +23,14 @@ const getAllPaymentsHandlers = async (req, res) => {
   }
 };
 
-const putPaymentHandler = (req, res) => {
+const putPaymentHandler = async (req, res) => {
   try {
-    const data = putPaymentController();
-    res.status(200).send(data);
+    const { id } = req.params;
+    const updateData = req.body;
+
+    const updatedPayment = await putPaymentController(id, updateData);
+
+    res.status(200).send(updatedPayment);
   } catch (error) {
     console.error(error);
     res.status(500).send({ error: error.message });
@@ -53,10 +58,21 @@ const deleteUserHanlder = (req, res) => {
   }
 };
 
+const getDashboardSummaryHandler = async (req, res) => {
+  try {
+    const summary = await getDashboardSummaryController();
+    res.status(200).json(summary);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: error.message });
+  }
+};
+
 module.exports = {
   getUserHandler,
   getAllPaymentsHandlers,
   putPaymentHandler,
   getPaymentCountHanlder,
   deleteUserHanlder,
+  getDashboardSummaryHandler,
 };

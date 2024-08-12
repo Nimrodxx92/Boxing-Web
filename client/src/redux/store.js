@@ -3,6 +3,7 @@ import paymentsReducer from "./paymentsSlice";
 import userReducer from "./userLocalSlice";
 import shopingCartReducer from "./shopingCartSlice";
 // import authReducer from "./authSlice";
+import adminSlice from "./adminSlice";
 
 const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ const store = configureStore({
     user: userReducer,
     shopingCartReducer: shopingCartReducer,
     // auth: authReducer,
+    admin: adminSlice,
   },
 });
 
