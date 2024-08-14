@@ -1,17 +1,21 @@
 .footer {
   background-color: $colorBgFooter;
-  padding: 50px;
+  padding: 30px 50px;
   font-family: "Poppins", sans-serif;
-  @media (max-width: 700px) {
+  @media (max-width: 768px) {
     padding: 30px;
   }
   .container__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    @media (max-width: 700px) {
+    @media (max-width: 768px) {
       flex-direction: column;
       gap: 24px;
+    }
+    @media (min-width: 769px) and (max-width: 900px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
     }
     .data__footer {
       display: flex;
@@ -23,46 +27,42 @@
         font-weight: 500;
         color: $colorTitleFooter;
         text-transform: uppercase;
-        @media (max-width: 700px) {
-          font-size: 20px;
-        }
       }
       p {
         color: $colorTextFooter;
         font-size: 16px;
         line-height: 24px;
-        @media (max-width: 700px) {
-          font-size: 14px;
+        @media (max-width: 768px) {
           line-height: 24px;
         }
       }
       .phone {
         color: $colorMain;
         font-size: 20px;
-        @media (max-width: 700px) {
-          font-size: 14px;
-        }
       }
     }
     .nav__footer {
       display: flex;
       align-items: center;
+      @media (min-width: 769px) and (max-width: 900px) {
+        justify-content: center;
+      }
       .footer__links {
         display: flex;
         flex-direction: column;
         gap: 10px;
-        @media (max-width: 700px) {
+        @media (max-width: 768px) {
+          align-items: center;
+        }
+        @media (min-width: 769px) and (max-width: 900px) {
           align-items: center;
         }
         .links__footer {
           text-decoration: none;
-          font-size: 1.2vw;
+          font-size: 16px;
           color: $colorTitleFooter;
           &:hover {
             color: $colorMain;
-          }
-          @media (max-width: 700px) {
-            font-size: 14px;
           }
         }
       }
@@ -71,14 +71,17 @@
       display: flex;
       flex-direction: column;
       justify-content: center;
+      @media (min-width: 769px) and (max-width: 900px) {
+        align-items: center;
+        margin-bottom: 44px;
+      }
       h4 {
         font-family: "Teko", sans-serif;
-        font-size: 2vw;
+        font-size: 24px;
         font-weight: 500;
         color: $colorTitleFooter;
         text-transform: uppercase;
-        @media (max-width: 700px) {
-          font-size: 20px;
+        @media (max-width: 768px) {
           text-align: center;
         }
       }
@@ -86,15 +89,14 @@
         text-align: center;
         color: #da1d25;
         a {
-          margin: 0 0.8vw;
+          margin: 8px;
           color: $colorTextTwo;
-          font-size: 1.8vw;
+          font-size: 22px;
           &:hover {
             color: $colorMain;
           }
-          @media (max-width: 700px) {
-            font-size: 20px;
-            margin: 15px;
+          @media (max-width: 768px) {
+            margin: 10px;
           }
         }
       }
@@ -102,16 +104,13 @@
   }
   .separador {
     border-top: 0.1vw solid rgb(139, 139, 139);
-    margin-top: 2vw;
+    margin-top: 18px;
   }
   .copy__name {
     color: $colorTextFooter;
     text-align: center;
-    font-size: 1.1vw;
-    margin-top: 1.5vw;
-    @media (max-width: 600px) {
-      font-size: 14px;
-    }
+    font-size: 14px;
+    margin-top: 20px;
     span {
       color: $colorMain;
     }
