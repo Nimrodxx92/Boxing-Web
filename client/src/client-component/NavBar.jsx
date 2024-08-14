@@ -72,7 +72,7 @@ function NavBar() {
             ))}
           </ul>
           <button className="menu-btn" onClick={toggleMenu}>
-            <span style={{ fontSize: "1.4rem" }}>
+            <span>
               {openMenu ? <span style={{ marginTop: "7px" }}>X</span> : "☰"}
             </span>
           </button>

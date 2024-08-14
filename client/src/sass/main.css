@@ -106,7 +106,8 @@ button {
 .menu-btn span {
   display: flex;
   justify-content: center;
-  margin-bottom: 2px;
+  align-items: center;
+  margin-top: -0.7vw;
 }
 
 @media (max-width: 920px) {
@@ -493,10 +494,10 @@ button {
 
 .footer {
   background-color: #0c0c0c;
-  padding: 50px;
+  padding: 30px 50px;
   font-family: "Poppins", sans-serif;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .footer {
     padding: 30px;
   }
@@ -506,10 +507,16 @@ button {
   justify-content: space-between;
   align-items: center;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .footer .container__footer {
     flex-direction: column;
     gap: 24px;
+  }
+}
+@media (min-width: 769px) and (max-width: 900px) {
+  .footer .container__footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 }
 .footer .container__footer .data__footer {
@@ -524,19 +531,13 @@ button {
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
-@media (max-width: 700px) {
-  .footer .container__footer .data__footer h4 {
-    font-size: 20px;
-  }
-}
 .footer .container__footer .data__footer p {
   color: rgba(255, 255, 255, 0.4);
   font-size: 16px;
   line-height: 24px;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .footer .container__footer .data__footer p {
-    font-size: 14px;
     line-height: 24px;
   }
 }
@@ -544,53 +545,58 @@ button {
   color: #da1d25;
   font-size: 20px;
 }
-@media (max-width: 700px) {
-  .footer .container__footer .data__footer .phone {
-    font-size: 14px;
-  }
-}
 .footer .container__footer .nav__footer {
   display: flex;
   align-items: center;
+}
+@media (min-width: 769px) and (max-width: 900px) {
+  .footer .container__footer .nav__footer {
+    justify-content: center;
+  }
 }
 .footer .container__footer .nav__footer .footer__links {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
+  .footer .container__footer .nav__footer .footer__links {
+    align-items: center;
+  }
+}
+@media (min-width: 769px) and (max-width: 900px) {
   .footer .container__footer .nav__footer .footer__links {
     align-items: center;
   }
 }
 .footer .container__footer .nav__footer .footer__links .links__footer {
   text-decoration: none;
-  font-size: 1.2vw;
+  font-size: 16px;
   color: rgba(255, 255, 255, 0.5);
 }
 .footer .container__footer .nav__footer .footer__links .links__footer:hover {
   color: #da1d25;
-}
-@media (max-width: 700px) {
-  .footer .container__footer .nav__footer .footer__links .links__footer {
-    font-size: 14px;
-  }
 }
 .footer .container__footer .redes__footer {
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
+@media (min-width: 769px) and (max-width: 900px) {
+  .footer .container__footer .redes__footer {
+    align-items: center;
+    margin-bottom: 44px;
+  }
+}
 .footer .container__footer .redes__footer h4 {
   font-family: "Teko", sans-serif;
-  font-size: 2vw;
+  font-size: 24px;
   font-weight: 500;
   color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .footer .container__footer .redes__footer h4 {
-    font-size: 20px;
     text-align: center;
   }
 }
@@ -599,33 +605,27 @@ button {
   color: #da1d25;
 }
 .footer .container__footer .redes__footer .icons__redes a {
-  margin: 0 0.8vw;
+  margin: 8px;
   color: #7e7b7b;
-  font-size: 1.8vw;
+  font-size: 22px;
 }
 .footer .container__footer .redes__footer .icons__redes a:hover {
   color: #da1d25;
 }
-@media (max-width: 700px) {
+@media (max-width: 768px) {
   .footer .container__footer .redes__footer .icons__redes a {
-    font-size: 20px;
-    margin: 15px;
+    margin: 10px;
   }
 }
 .footer .separador {
   border-top: 0.1vw solid rgb(139, 139, 139);
-  margin-top: 2vw;
+  margin-top: 18px;
 }
 .footer .copy__name {
   color: rgba(255, 255, 255, 0.4);
   text-align: center;
-  font-size: 1.1vw;
-  margin-top: 1.5vw;
-}
-@media (max-width: 600px) {
-  .footer .copy__name {
-    font-size: 14px;
-  }
+  font-size: 14px;
+  margin-top: 20px;
 }
 .footer .copy__name span {
   color: #da1d25;
